@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HeaderCollectionViewCell" customModule="Final_Project" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="336" height="276"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="336" height="276"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z3S-zR-6ki">
+                        <rect key="frame" x="0.0" y="0.0" width="336" height="204"/>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabel LabelLabelLabel Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltO-SF-A3W">
+                        <rect key="frame" x="0.0" y="216" width="336" height="60"/>
+                        <fontDescription key="fontDescription" name="KohinoorGujarati-Bold" family="Kohinoor Gujarati" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="ltO-SF-A3W" secondAttribute="bottom" id="FvW-yP-HTU"/>
+                <constraint firstItem="Z3S-zR-6ki" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="NX7-hX-6gK"/>
+                <constraint firstAttribute="trailing" secondItem="Z3S-zR-6ki" secondAttribute="trailing" id="SE6-9S-cYU"/>
+                <constraint firstAttribute="trailing" secondItem="ltO-SF-A3W" secondAttribute="trailing" id="Z1f-Un-7wY"/>
+                <constraint firstItem="Z3S-zR-6ki" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lTp-na-PbG"/>
+                <constraint firstItem="ltO-SF-A3W" firstAttribute="top" secondItem="Z3S-zR-6ki" secondAttribute="bottom" constant="12" id="sWG-2J-sOj"/>
+                <constraint firstItem="ltO-SF-A3W" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="uJe-hZ-h1S"/>
+            </constraints>
+            <size key="customSize" width="336" height="276"/>
+            <connections>
+                <outlet property="headerImageView" destination="Z3S-zR-6ki" id="PbJ-eT-PEe"/>
+                <outlet property="headerLabel" destination="ltO-SF-A3W" id="zBL-9m-h5r"/>
+            </connections>
+            <point key="canvasLocation" x="79.710144927536234" y="68.303571428571431"/>
+        </collectionViewCell>
+    </objects>
+</document>

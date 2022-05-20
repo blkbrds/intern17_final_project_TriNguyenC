@@ -20,7 +20,7 @@ class BaseTabbarViewController: UITabBarController {
         // News
         let newsVC = NewsViewController()
         let newsNav = UINavigationController(rootViewController: newsVC)
-        newsNav.tabBarItem = UITabBarItem(title: "News Stories", image: UIImage(systemName: "flame.fill"), tag: 0)
+        newsNav.tabBarItem = UITabBarItem(title: "Top Stories", image: UIImage(systemName: "flame.fill"), tag: 0)
         
         // Search
         let searchVC = SearchViewController()

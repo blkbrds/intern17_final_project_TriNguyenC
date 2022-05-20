@@ -11,7 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewsViewController" customModule="Final_Project" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="Gze-Km-UZF" id="vIs-YC-6er"/>
+                <outlet property="collectionView" destination="fgx-xS-Snb" id="SfT-xz-IW6"/>
+                <outlet property="tableView" destination="pnf-rR-KiI" id="sfP-Ny-Sdm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,25 +21,51 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Gze-Km-UZF">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pnf-rR-KiI">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <view key="tableHeaderView" contentMode="scaleToFill" id="VEi-Gg-SXx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fgx-xS-Snb">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="BA3-pP-CVw">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fgx-xS-Snb" firstAttribute="top" secondItem="VEi-Gg-SXx" secondAttribute="top" id="134-cq-xkO"/>
+                            <constraint firstItem="fgx-xS-Snb" firstAttribute="leading" secondItem="VEi-Gg-SXx" secondAttribute="leading" id="CdT-IA-KrT"/>
+                            <constraint firstAttribute="bottom" secondItem="fgx-xS-Snb" secondAttribute="bottom" id="UNM-cH-PXX"/>
+                            <constraint firstAttribute="trailing" secondItem="fgx-xS-Snb" secondAttribute="trailing" id="WXG-g2-5uo"/>
+                        </constraints>
+                    </view>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Gze-Km-UZF" secondAttribute="bottom" id="8eP-Ik-a73"/>
-                <constraint firstItem="Gze-Km-UZF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Blw-gd-wwd"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Gze-Km-UZF" secondAttribute="trailing" id="hyV-Nh-tXT"/>
-                <constraint firstItem="Gze-Km-UZF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="sso-dX-G15"/>
+                <constraint firstItem="pnf-rR-KiI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Foa-78-M55"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="pnf-rR-KiI" secondAttribute="bottom" id="PKT-YZ-01j"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pnf-rR-KiI" secondAttribute="trailing" id="pLD-NS-Gmr"/>
+                <constraint firstItem="pnf-rR-KiI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pvY-gR-4zM"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="110"/>
+            <point key="canvasLocation" x="137.68115942028987" y="109.82142857142857"/>
         </view>
     </objects>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
