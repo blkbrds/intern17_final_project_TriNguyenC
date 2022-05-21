@@ -10,7 +10,7 @@ import SDWebImage
 
 final class MainTableViewCell: UITableViewCell {
     
-    // MARK: - IBOutlet
+    // MARK: - IBOutlets
     @IBOutlet private weak var mainImageView: UIImageView!
     @IBOutlet private weak var mainTitleLabel: UILabel!
     @IBOutlet private weak var publishedAtLabel: UILabel!
@@ -24,6 +24,7 @@ final class MainTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        configUI()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -31,6 +32,11 @@ final class MainTableViewCell: UITableViewCell {
     }
     
     // MARK: UI
+    private func configUI() {
+        mainImageView.layer.cornerRadius = 12
+        mainImageView.clipsToBounds = true
+    }
+    
     private func updateUIView() {
         guard let viewModel = viewModel else { return }
         mainTitleLabel.text = viewModel.new?.title

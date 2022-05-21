@@ -17,7 +17,7 @@ final class HeaderCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    // MARK: - Outlet
+    // MARK: - IBOutlets
     @IBOutlet private weak var headerImageView: UIImageView!
     @IBOutlet private weak var headerLabel: UILabel!
     
@@ -25,7 +25,7 @@ final class HeaderCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    // MARK: UI
+    // MARK: - UI
     private func updateHeaderView() {
         guard let viewModel = viewModel else { return }
         headerLabel.text = viewModel.new?.title

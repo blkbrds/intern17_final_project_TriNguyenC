@@ -13,7 +13,7 @@ final class NewsViewModel {
     enum SectionType: Int {
         case health
         case sports
-        case finance
+        case science
         
         func title() -> String {
             switch self {
@@ -21,8 +21,8 @@ final class NewsViewModel {
                 return "Health"
             case .sports:
                 return "Sports"
-            case .finance:
-                return "Finance"
+            case .science:
+                return "Science"
             }
         }
     }
