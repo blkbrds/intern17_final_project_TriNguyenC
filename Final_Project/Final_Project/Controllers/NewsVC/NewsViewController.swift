@@ -12,9 +12,8 @@ final class NewsViewController: BaseViewController {
     
     // MARK: - Enum
     enum Identifier: String {
-        case bannerCell = "BannerTableViewCell"
         case mainCell = "MainTableViewCell"
-        case headerView = "HeaderBannerView"
+        case headerCell = "HeaderCollectionViewCell"
     }
     
     // MARK: - Properties
@@ -36,45 +35,43 @@ final class NewsViewController: BaseViewController {
     private func configTableView() {
         let mainNib = UINib(nibName: Identifier.mainCell.rawValue, bundle: nil)
         tableView.register(mainNib, forCellReuseIdentifier: Identifier.mainCell.rawValue)
-
+        
         // delegate && datasource
         tableView.delegate = self
         tableView.dataSource = self
     }
     
     private func configCollectionView() {
-        // register
-        let nib = UINib(nibName: "HeaderCollectionViewCell", bundle: .main)
-        collectionView.register(nib, forCellWithReuseIdentifier: "HeaderCollectionViewCell")
-
-        // Initialization code
+        let headerNib = UINib(nibName: Identifier.headerCell.rawValue, bundle: nil)
+        collectionView.register(headerNib, forCellWithReuseIdentifier: Identifier.headerCell.rawValue)
+        
+        // delegate && datasource
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = .red
     }
-
+    
     // MARK: - Data
     override func setupData() {
         fetchAPI()
     }
-
+    
     // MARK: - Fetch Data
     private func fetchAPI() {
         let distchPathGroup = DispatchGroup()
-
+        
         // Call Healine API
-//        SVProgressHUD.show()
+        //        SVProgressHUD.show()
         distchPathGroup.enter()
         viewModel.loadAPIHeadlines { isSucess, error in
             distchPathGroup.leave()
         }
-
+        
         // Call Section API
         distchPathGroup.enter()
         viewModel.loadAPI(type: .health) { isSuccess, error in
             distchPathGroup.leave()
         }
-
+        
         distchPathGroup.notify(queue: .main, execute: { [weak self] in
             guard let this = self else { return }
             this.collectionView.reloadData()
@@ -102,17 +99,17 @@ extension NewsViewController: UITableViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 300
-//    }
-//
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: Identifier.headerView.rawValue) as? HeaderBannerView else {
-//            return HeaderBannerView()
-//        }
-//        headerView.delegate = self
-//        return headerView
-//    }
+    //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    //        return 300
+    //    }
+    //
+    //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    //        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: Identifier.headerView.rawValue) as? HeaderBannerView else {
+    //            return HeaderBannerView()
+    //        }
+    //        headerView.delegate = self
+    //        return headerView
+    //    }
 }
 
 // MARK: - Extention UITableViewDataSource
@@ -124,8 +121,8 @@ extension NewsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let type = NewsViewModel.SectionType(rawValue: section),
-              let news = viewModel.data[type] else { return 0 }
-        return news.count
+              let news = viewModel.data[type]?.count else { return 0 }
+        return news
     }
 }
 
@@ -145,7 +142,7 @@ extension NewsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HeaderCollectionViewCell", for: indexPath) as? HeaderCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.headerCell.rawValue, for: indexPath) as? HeaderCollectionViewCell else { return UICollectionViewCell() }
         cell.viewModel = viewModel.viewModelHeaderForCell(at: indexPath)
         return cell
     }

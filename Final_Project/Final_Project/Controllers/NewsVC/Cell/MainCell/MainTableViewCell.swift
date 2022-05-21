@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class MainTableViewCell: UITableViewCell {
+final class MainTableViewCell: UITableViewCell {
     
     // MARK: - IBOutlet
     @IBOutlet private weak var mainImageView: UIImageView!

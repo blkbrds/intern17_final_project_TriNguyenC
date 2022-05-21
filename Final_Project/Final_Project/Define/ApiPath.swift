@@ -12,7 +12,6 @@ final class ApiPath {
     static var baseURL = "https://newsapi.org/v2"
     static var searchNews: String { return baseURL + "/everything" }
     static var topHeadlineNews: String { return baseURL + "/top-headlines"}
-
 }
 
 
