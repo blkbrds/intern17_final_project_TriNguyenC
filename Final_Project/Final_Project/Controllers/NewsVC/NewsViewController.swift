@@ -32,6 +32,7 @@ final class NewsViewController: BaseViewController {
         configTableView()
     }
     
+    // MARK: - ConfigViews
     private func configTableView() {
         let mainNib = UINib(nibName: Identifier.mainCell.rawValue, bundle: nil)
         tableView.register(mainNib, forCellReuseIdentifier: Identifier.mainCell.rawValue)
@@ -64,44 +65,22 @@ final class NewsViewController: BaseViewController {
         // Call Healine API
 //        SVProgressHUD.show()
         distchPathGroup.enter()
-        viewModel.loadAPIHeadlines { [weak self] isSucess, error in
-            guard let this = self else { return }
-            if let error = error {
-                // Do sth
-            }
+        viewModel.loadAPIHeadlines { isSucess, error in
             distchPathGroup.leave()
         }
 
         // Call Section API
         distchPathGroup.enter()
-        viewModel.loadAPI(type: .health) { [weak self] isSuccess, error in
-            guard let this = self else { return }
-            if let error = error {
-                // Do sth
-            }
+        viewModel.loadAPI(type: .health) { isSuccess, error in
             distchPathGroup.leave()
         }
 
-        distchPathGroup.notify(queue: .main) {
-            self.collectionView.reloadData()
-            self.tableView.reloadData()
-        }
+        distchPathGroup.notify(queue: .main, execute: { [weak self] in
+            guard let this = self else { return }
+            this.collectionView.reloadData()
+            this.tableView.reloadData()
+        })
     }
-    
-    // MARK: - API
-//    private func loadAPIHeaderView() {
-//        viewModel.loadAPIHeadlines { [weak self] isSucess, err in
-//            guard let this = self else { return }
-//            this.collectionView.reloadData()
-//        }
-//    }
-//
-//    private func updateAPIMain() {
-//        viewModel.loadAPI(type: .health) { [weak self] isSuccess, error in
-//            guard let this = self else { return }
-//            this.tableView.reloadData()
-//        }
-//    }
 }
 
 // MARK: - Extention UITableViewDelegate

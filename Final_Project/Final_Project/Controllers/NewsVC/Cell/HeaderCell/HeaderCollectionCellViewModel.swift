@@ -11,15 +11,17 @@ import UIKit
 
 final class HeaderCollectionCellViewModel {
     
+    // MARK: - Properties
     var new: New?
     
+    // MARK: - Init
     init(new: New) {
         self.new = new
     }
         
+    // MARK: - GetImage
     func getImageURL() -> URL? {
         let url = URL(string: new?.urlToImage ?? "")
         return url
     }
-
 }

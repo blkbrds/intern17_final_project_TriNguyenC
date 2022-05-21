@@ -20,14 +20,15 @@ final class MainCellViewModel {
     }
     
     // MARK: - LoadImage
-    func loadImage(completion: @escaping () -> Void) {
-        PhotoManager.shared.downloadImage(with: new?.urlToImage ?? "") { [weak self] data in
-            guard let this = self else { return }
-            this.imageData = data
-            completion()
-        }
-    }
+//    func loadImage(completion: @escaping () -> Void) {
+//        PhotoManager.shared.downloadImage(with: new?.urlToImage ?? "") { [weak self] data in
+//            guard let this = self else { return }
+//            this.imageData = data
+//            completion()
+//        }
+//    }
 
+    // MARK: - GetImage
     func getImageURL() -> URL? {
         let url = URL(string: new?.urlToImage ?? "")
         return url
