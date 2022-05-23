@@ -124,27 +124,9 @@ extension NewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = DetailViewController()
+        vc.viewModel = viewModel.viewModelForDetail(at: indexPath)
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-////        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-////            return 25
-////        }
-////
-//        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-////            guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: Identifier.headerView.rawValue) as? HeaderBannerView else {
-////                return HeaderBannerView()
-////            }
-//            let headerView = UIView()
-//            headerView.backgroundColor = .red
-//            let screenWidth = UIScreen.main.bounds.width
-//            headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 30)
-//            let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 30))
-//            label.text = NewsViewModel.SectionType(rawValue: section)?.title()
-//            headerView.addSubview(label)
-////            headerView.delegate = self
-//            return headerView
-//        }
 }
 
 // MARK: - Extention UITableViewDataSource

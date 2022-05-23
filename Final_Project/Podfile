@@ -4,7 +4,7 @@ target 'Final_Project' do
   use_frameworks!
 
   # UI
-  pod 'SVProgressHUD'
+  pod 'SVProgressHUD', '2.2.5'
   
   # Tool to enforce Swift style and conventions
   pod 'SwiftLint', '0.27.0'

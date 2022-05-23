@@ -56,6 +56,12 @@ final class NewsViewModel {
         let new = headlineNews[indexPath.row]
         return HeaderCollectionCellViewModel(new: new)
     }
+    
+    func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
+        guard let type = NewsViewModel.SectionType(rawValue: indexPath.section),
+              let news = data[type] else { return DetailViewModel(new: nil) }
+        return DetailViewModel(new: news[indexPath.row])
+    }
 }
 
 // MARK: - API

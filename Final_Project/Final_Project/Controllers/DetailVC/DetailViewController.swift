@@ -19,14 +19,20 @@ final class DetailViewController: BaseViewController {
     @IBOutlet private weak var dateLabel: UILabel!
     
     // MARK: - Properties
-    private var viewModel = DetailViewModel()
+    var viewModel = DetailViewModel()
     
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    override func setupData() {
-        
+    override func setupUI() {
+        titleDetailLabel.text = viewModel.new?.title
+        authorLabel.text = viewModel.new?.author
+        contentLabel.text = viewModel.new?.content
+        dateLabel.text = viewModel.new?.publishedAt
     }
+    
+    override func setupData() {}
+    
 }
