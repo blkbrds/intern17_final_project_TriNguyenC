@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SVProgressHUD
 
 final class NewsViewController: BaseViewController {
     
@@ -60,7 +59,6 @@ final class NewsViewController: BaseViewController {
         let distchPathGroup = DispatchGroup()
         
         // Call Healine API
-        //        SVProgressHUD.show()
         distchPathGroup.enter()
         viewModel.loadAPIHeadlines { isSucess, error in
             distchPathGroup.leave()
@@ -68,7 +66,37 @@ final class NewsViewController: BaseViewController {
         
         // Call Section API
         distchPathGroup.enter()
+        viewModel.loadAPI(type: .general) { isSuccess, error in
+            distchPathGroup.leave()
+        }
+        
+        distchPathGroup.enter()
         viewModel.loadAPI(type: .health) { isSuccess, error in
+            distchPathGroup.leave()
+        }
+        
+        distchPathGroup.enter()
+        viewModel.loadAPI(type: .sports) { isSuccess, error in
+            distchPathGroup.leave()
+        }
+        
+        distchPathGroup.enter()
+        viewModel.loadAPI(type: .science) { isSuccess, error in
+            distchPathGroup.leave()
+        }
+        
+        distchPathGroup.enter()
+        viewModel.loadAPI(type: .business) { isSucess, error in
+            distchPathGroup.leave()
+        }
+        
+        distchPathGroup.enter()
+        viewModel.loadAPI(type: .entertainment) { isSucess, error in
+            distchPathGroup.leave()
+        }
+        
+        distchPathGroup.enter()
+        viewModel.loadAPI(type: .technology) { isSucess, error in
             distchPathGroup.leave()
         }
         
@@ -90,7 +118,7 @@ extension NewsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 135
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -99,21 +127,32 @@ extension NewsViewController: UITableViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    //        return 300
-    //    }
-    //
-    //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    //        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: Identifier.headerView.rawValue) as? HeaderBannerView else {
-    //            return HeaderBannerView()
-    //        }
-    //        headerView.delegate = self
-    //        return headerView
-    //    }
+////        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+////            return 25
+////        }
+////
+//        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+////            guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: Identifier.headerView.rawValue) as? HeaderBannerView else {
+////                return HeaderBannerView()
+////            }
+//            let headerView = UIView()
+//            headerView.backgroundColor = .red
+//            let screenWidth = UIScreen.main.bounds.width
+//            headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 30)
+//            let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 30))
+//            label.text = NewsViewModel.SectionType(rawValue: section)?.title()
+//            headerView.addSubview(label)
+////            headerView.delegate = self
+//            return headerView
+//        }
 }
 
 // MARK: - Extention UITableViewDataSource
 extension NewsViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return NewsViewModel.SectionType(rawValue: section)?.title()
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.data.count

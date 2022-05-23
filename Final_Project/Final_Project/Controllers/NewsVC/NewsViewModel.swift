@@ -11,18 +11,30 @@ final class NewsViewModel {
     
     // MARK: - Enum
     enum SectionType: Int {
+        case general
         case health
         case sports
         case science
+        case business
+        case entertainment
+        case technology
         
         func title() -> String {
             switch self {
+            case .general:
+                return "General"
             case .health:
                 return "Health"
             case .sports:
                 return "Sports"
             case .science:
                 return "Science"
+            case .business:
+                return "Business"
+            case .entertainment:
+                return "Entertaiment"
+            case .technology:
+                return "Technology"
             }
         }
     }
@@ -32,7 +44,7 @@ final class NewsViewModel {
     // MARK: - Properties
     var data: [SectionType: [New]] = [:]
     var headlineNews: [New] = []
-
+    
     // MARK: - Cell
     func viewModelForCell(at indexPath: IndexPath) -> MainCellViewModel {
         guard let type = NewsViewModel.SectionType(rawValue: indexPath.section),
@@ -48,7 +60,7 @@ final class NewsViewModel {
 
 // MARK: - API
 extension NewsViewModel {
-
+    
     func loadAPI(type: SectionType, completion: @escaping Completion) {
         let queryString = type.title()
         NewsService.searchNews(keyword: queryString) { [weak self] searchNews in
