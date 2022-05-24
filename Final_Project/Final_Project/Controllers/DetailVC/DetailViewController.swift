@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class DetailViewController: BaseViewController {
 
@@ -31,8 +32,15 @@ final class DetailViewController: BaseViewController {
         authorLabel.text = viewModel.new?.author
         contentLabel.text = viewModel.new?.content
         dateLabel.text = viewModel.new?.publishedAt
+        descriptionLabel.text = viewModel.new?.description
+        thumbnailImageView.sd_setImage(with: viewModel.getImageURL(), placeholderImage: nil)
     }
-    
-    override func setupData() {}
-    
+}
+
+extension DetailViewController {
+    func subString(str: String) -> String {
+        if str.isEmpty { return "" }
+        let index = str.index(str.startIndex, offsetBy: 100)
+        return String(str[..<index])
+    }
 }

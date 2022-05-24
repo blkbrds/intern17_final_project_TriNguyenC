@@ -10,9 +10,11 @@ import Foundation
 final class NewsService {
     
     // MARK: - Get Service
-    class func searchNews(keyword: String, completion: @escaping ([New]?) -> Void) {
+    class func searchNews(keyword: String, pageSize: Int, completion: @escaping ([New]?) -> Void) {
         let urlString: String = ApiPath.searchNews
-        let parameters: [String: String] = ["q": keyword]
+        let parameters: [String: String] = ["q": keyword,
+                                            "pageSize": "\(pageSize)"]
+
         API.shared().request(urlString: urlString, parameters: parameters) { result in
             switch result {
             case .success(let data):
