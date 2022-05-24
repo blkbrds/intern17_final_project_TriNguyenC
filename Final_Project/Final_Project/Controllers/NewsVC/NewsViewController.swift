@@ -127,6 +127,17 @@ extension NewsViewController: UITableViewDelegate {
         vc.viewModel = viewModel.viewModelForDetail(at: indexPath)
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerSectionView = Bundle.main.loadNibNamed("HeaderSectionView", owner: self, options: nil)?.first as? HeaderSectionView
+        headerSectionView?.delegate = self
+        headerSectionView?.viewModel = viewModel.viewModelForSectionHeader(at: section)
+        return headerSectionView
+    }
 }
 
 // MARK: - Extention UITableViewDataSource
@@ -171,5 +182,19 @@ extension NewsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - Implement HeaderViewDelegate
+extension NewsViewController: HeaderSectionViewDelegate {
+    
+    func view(view: HeaderSectionView, needsPerform action: HeaderSectionView.Action) {
+        switch action {
+        case .tap(let sectionType):
+            let vc = CategoryDetailViewController()
+            let viewModel = CategoryViewModel(categoryType: sectionType)
+            vc.viewModel = viewModel
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

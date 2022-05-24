@@ -5,7 +5,7 @@
 //  Created by tri.nguyen on 18/05/2022.
 //
 
-import Foundation
+import UIKit
 
 final class NewsViewModel {
     
@@ -62,6 +62,11 @@ final class NewsViewModel {
               let news = data[type] else { return DetailViewModel(new: nil) }
         return DetailViewModel(new: news[indexPath.row])
     }
+    
+    func viewModelForSectionHeader(at section: Int) -> HeaderSectionViewModel {
+        guard let type = SectionType(rawValue: section) else { return HeaderSectionViewModel(sectionType: .general)}
+        return HeaderSectionViewModel(sectionType: type)
+    }
 }
 
 // MARK: - API
@@ -74,6 +79,7 @@ extension NewsViewModel {
                 completion(false, .error("URL is not valid"))
                 return
             }
+            
             if let news = searchNews {
                 this.data[type] = news
                 completion(true, nil)
