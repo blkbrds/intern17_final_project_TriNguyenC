@@ -78,7 +78,7 @@ extension NewsViewModel {
     
     func loadAPI(type: SectionType, completion: @escaping Completion) {
         let queryString = type.title()
-        NewsService.searchNews(keyword: queryString, pageSize: 5) { [weak self] searchNews in
+        NewsService.searchNews(keyword: queryString, pageSize: 4) { [weak self] searchNews in
             guard let this = self else {
                 completion(false, .error("URL is not valid"))
                 return

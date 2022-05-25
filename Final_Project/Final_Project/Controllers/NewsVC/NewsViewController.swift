@@ -105,7 +105,7 @@ final class NewsViewController: BaseViewController {
             this.collectionView.reloadData()
             this.tableView.reloadData()
         })
-    }
+    }    
 }
 
 // MARK: - Extention UITableViewDelegate

@@ -51,9 +51,20 @@ final class CategoryDetailViewController: BaseViewController {
             if isSuccess {
                 this.tableView.reloadData()
             } else {
-                print(error?.localizedDescription)
+                if let error = error {
+                    self?.showAlert(error: .error(error.localizedDescription))
+                } else {
+                    self?.showAlert(error: .errorURL)
+                }
             }
         })
+    }
+    
+    // MARK: - Alert
+    private func showAlert(error: APIError?) {
+        let alertVC = UIAlertController(title: "Cancel", message: "Please check api of you", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "Check", style: .cancel, handler: nil))
+        present(alertVC, animated: true)
     }
 }
 
