@@ -70,7 +70,7 @@ final class NewsViewModel {
     func viewModelForSectionHeader(at section: Int) -> HeaderSectionViewModel {
         guard let type = SectionType(rawValue: section) else { return HeaderSectionViewModel(sectionType: .general)}
         return HeaderSectionViewModel(sectionType: type)
-    }
+    }    
 }
 
 // MARK: - API

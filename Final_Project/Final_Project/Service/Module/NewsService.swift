@@ -13,7 +13,8 @@ final class NewsService {
     class func searchNews(keyword: String, pageSize: Int, completion: @escaping ([New]?) -> Void) {
         let urlString: String = ApiPath.searchNews
         let parameters: [String: String] = ["q": keyword,
-                                            "pageSize": "\(pageSize)"]
+                                            "pageSize": "\(pageSize)"
+        ]
 
         API.shared().request(urlString: urlString, parameters: parameters) { result in
             switch result {
@@ -37,9 +38,12 @@ final class NewsService {
         }
     }
     
-    class func searchNewsCategory(keyword: String, completion: @escaping ([New]?) -> Void) {
+    class func searchNewsCategory(keyword: String, page: Int, pageSize: Int, completion: @escaping ([New]?) -> Void) {
         let urlString: String = ApiPath.searchNews
-        let parameters: [String: String] = ["q": keyword]
+        let parameters: [String: String] = ["q": keyword,
+                                            "pageSize": "\(pageSize)",
+                                            "page": "\(page)"
+        ]
 
         API.shared().request(urlString: urlString, parameters: parameters) { result in
             switch result {
@@ -62,7 +66,6 @@ final class NewsService {
             }
         }
     }
-
 
     class func getTopHeadlines(country: String, completion: @escaping ([New]?) -> Void) {
         let urlString: String = ApiPath.topHeadlineNews

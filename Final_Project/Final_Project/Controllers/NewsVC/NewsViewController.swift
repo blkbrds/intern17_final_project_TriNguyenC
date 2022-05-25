@@ -21,6 +21,7 @@ final class NewsViewController: BaseViewController {
     // MARK: - IBOutlet
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var collectionView: UICollectionView!
+    var error: Error?
     
     // MARK: - UI
     override func setupUI() {
@@ -102,8 +103,8 @@ final class NewsViewController: BaseViewController {
         
         distchPathGroup.notify(queue: .main, execute: { [weak self] in
             guard let this = self else { return }
-            this.collectionView.reloadData()
-            this.tableView.reloadData()
+                this.collectionView.reloadData()
+                this.tableView.reloadData()
         })
     }    
 }

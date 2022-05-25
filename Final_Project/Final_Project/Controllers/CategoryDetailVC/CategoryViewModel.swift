@@ -14,7 +14,10 @@ final class CategoryViewModel {
     // MARK: - Properties
     var news: [New] = []
     var categoryType: NewsViewModel.SectionType
-    
+    var page: Int = 1
+    var pageSize: Int = 20
+
+    // MARK: - Init
     init(categoryType: NewsViewModel.SectionType) {
         self.categoryType = categoryType
     }
@@ -27,6 +30,14 @@ final class CategoryViewModel {
     func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
         return DetailViewModel(new: news[indexPath.row])
     }
+    
+    func checkLoadMore(at indexPath: IndexPath) -> Bool {
+        if indexPath.row == news.count - 1 {
+            page += 1
+            return true
+        }
+        return false
+    }
 }
 
 // MARK: - API
@@ -34,13 +45,13 @@ extension CategoryViewModel {
     
     func loadAPI(completion: @escaping Completion) {
         let queryString = categoryType.title()
-        NewsService.searchNewsCategory(keyword: queryString) { [weak self] searchNews in
+        NewsService.searchNewsCategory(keyword: queryString, page: page, pageSize: pageSize) { [weak self] searchNews in
             guard let this = self else {
                 completion(false, .error("URL is not valid"))
                 return
             }
             if let news = searchNews {
-                this.news = news
+                this.news += news
                 completion(true, nil)
             } else {
                 completion(false, .error("Data is nil"))

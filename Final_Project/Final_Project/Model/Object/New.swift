@@ -17,11 +17,12 @@ final class New {
     var urlToImage: String = ""
     var publishedAt: String = ""
     var content: String = ""
+    var source: Source?
     
     // MARK: - init
     init(json: JSON) {
         if let source = json["source"] as? JSON {
-           _ = Source(json: source)
+            self.source = Source(json: source)
         }
         self.author = json["author"] as? String ?? ""
         self.title = json["title"] as? String ?? ""

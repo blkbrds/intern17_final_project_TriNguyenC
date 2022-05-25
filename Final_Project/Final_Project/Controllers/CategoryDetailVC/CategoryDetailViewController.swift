@@ -52,20 +52,13 @@ final class CategoryDetailViewController: BaseViewController {
                 this.tableView.reloadData()
             } else {
                 if let error = error {
-                    self?.showAlert(error: .error(error.localizedDescription))
+                    UIAlertController.showAlert(error: .error(error.localizedDescription), from: this)
                 } else {
-                    self?.showAlert(error: .errorURL)
+                    UIAlertController.showAlert(error: .errorURL, from: this)
                 }
             }
         })
-    }
-    
-    // MARK: - Alert
-    private func showAlert(error: APIError?) {
-        let alertVC = UIAlertController(title: "Cancel", message: "Please check api of you", preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "Check", style: .cancel, handler: nil))
-        present(alertVC, animated: true)
-    }
+    }    
 }
 
 // MARK: - Extention UITableViewDelegate
@@ -87,6 +80,12 @@ extension CategoryDetailViewController: UITableViewDelegate {
         let vc = DetailViewController()
         vc.viewModel = viewModel.viewModelForDetail(at: indexPath)
         navigationController?.pushViewController(vc, animated: true)
+    }
+        
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let viewModel = viewModel else { return }
+        let isLoadMore = viewModel.checkLoadMore(at: indexPath)
+        if isLoadMore { fetchAPI() }
     }
 }
 

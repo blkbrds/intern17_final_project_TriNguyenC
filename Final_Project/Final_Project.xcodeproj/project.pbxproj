@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220AF284283E1AC00054E2C2 /* UIAlertViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220AF283283E1AC00054E2C2 /* UIAlertViewControllerExt.swift */; };
 		22250AB7283B1963001832C8 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22250AB6283B1963001832C8 /* DetailViewModel.swift */; };
 		22339BE228377E3800EA8F6C /* ApiPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22339BE128377E3700EA8F6C /* ApiPath.swift */; };
 		22339BE42837A24800EA8F6C /* HeaderCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22339BE32837A24800EA8F6C /* HeaderCollectionCellViewModel.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		220AF283283E1AC00054E2C2 /* UIAlertViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertViewControllerExt.swift; sourceTree = "<group>"; };
 		22250AB6283B1963001832C8 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		22339BE128377E3700EA8F6C /* ApiPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPath.swift; sourceTree = "<group>"; };
 		22339BE32837A24800EA8F6C /* HeaderCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionCellViewModel.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				22AAC2662834ABBB000D6688 /* DataExt.swift */,
+				220AF283283E1AC00054E2C2 /* UIAlertViewControllerExt.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				224A66E42833DB30002A5BC6 /* SearchViewController.swift in Sources */,
 				22AAC2712834D67B000D6688 /* NewsService.swift in Sources */,
 				224A66E02833D85C002A5BC6 /* DetailViewController.swift in Sources */,
+				220AF284283E1AC00054E2C2 /* UIAlertViewControllerExt.swift in Sources */,
 				22AAC26E2834CF9D000D6688 /* New.swift in Sources */,
 				22388BBF283390B800EE3DC8 /* AppDelegate.swift in Sources */,
 				22AAC26A2834C9FA000D6688 /* API.swift in Sources */,
