@@ -175,12 +175,13 @@ extension NewsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.headerCell.rawValue, for: indexPath) as? HeaderCollectionViewCell else { return UICollectionViewCell() }
-        cell.viewModel = viewModel.viewModelHeaderForCell(at: indexPath)
+        cell.viewModel = viewModel.viewModelHeaderForCollectionCell(at: indexPath)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailViewController()
+        vc.viewModel = viewModel.viewModelForDetailHeader(at: indexPath)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

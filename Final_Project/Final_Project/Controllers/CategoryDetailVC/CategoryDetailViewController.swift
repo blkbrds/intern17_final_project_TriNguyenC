@@ -81,10 +81,6 @@ extension CategoryDetailViewController: UITableViewDelegate {
 
 // MARK: - Extention UITableViewDataSource
 extension CategoryDetailViewController: UITableViewDataSource {
-    
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return CategoryViewModel.SectionType(rawValue: section)?.title()
-//    }
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.news.count ?? 0

@@ -52,7 +52,7 @@ final class NewsViewModel {
         return MainCellViewModel(new: news[indexPath.row])
     }
     
-    func viewModelHeaderForCell(at indexPath: IndexPath) -> HeaderCollectionCellViewModel {
+    func viewModelHeaderForCollectionCell(at indexPath: IndexPath) -> HeaderCollectionCellViewModel {
         let new = headlineNews[indexPath.row]
         return HeaderCollectionCellViewModel(new: new)
     }
@@ -61,6 +61,10 @@ final class NewsViewModel {
         guard let type = NewsViewModel.SectionType(rawValue: indexPath.section),
               let news = data[type] else { return DetailViewModel(new: nil) }
         return DetailViewModel(new: news[indexPath.row])
+    }
+    
+    func viewModelForDetailHeader(at indexPath: IndexPath) -> DetailViewModel {
+        return DetailViewModel(new: headlineNews[indexPath.row])
     }
     
     func viewModelForSectionHeader(at section: Int) -> HeaderSectionViewModel {
