@@ -36,11 +36,3 @@ final class DetailViewController: BaseViewController {
         thumbnailImageView.sd_setImage(with: viewModel.getImageURL(), placeholderImage: nil)
     }
 }
-
-extension DetailViewController {
-    func subString(str: String) -> String {
-        if str.isEmpty { return "" }
-        let index = str.index(str.startIndex, offsetBy: 100)
-        return String(str[..<index])
-    }
-}

@@ -1,26 +1,38 @@
 PODS:
+  - Alamofire (4.7.3)
+  - ObjectMapper (3.5.3)
   - SDWebImage (5.12.5):
     - SDWebImage/Core (= 5.12.5)
   - SDWebImage/Core (5.12.5)
   - SVProgressHUD (2.2.5)
   - SwiftLint (0.27.0)
+  - SwiftUtils (4.2.1)
 
 DEPENDENCIES:
+  - Alamofire (= 4.7.3)
+  - ObjectMapper (~> 3.5)
   - SDWebImage (~> 5.0)
   - SVProgressHUD (= 2.2.5)
   - SwiftLint (= 0.27.0)
+  - SwiftUtils (= 4.2.1)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
+    - ObjectMapper
     - SDWebImage
     - SVProgressHUD
     - SwiftLint
+    - SwiftUtils
 
 SPEC CHECKSUMS:
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
+  SwiftUtils: fa346feeac5a25eab7ea5d59f1857c6253cb8ab1
 
-PODFILE CHECKSUM: 5229f3ec951b0e6978cc8825fe8c2089ac5c03fc
+PODFILE CHECKSUM: e41de0ecec74c14f0aca0746c442cd67b428e6ce
 
 COCOAPODS: 1.11.3
