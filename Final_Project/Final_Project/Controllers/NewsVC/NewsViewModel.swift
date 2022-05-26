@@ -10,7 +10,7 @@ import Foundation
 final class NewsViewModel {
     
     // MARK: - Enum
-    enum SectionType: Int {
+    enum SectionType: Int, CaseIterable {
         case general
         case health
         case sports
@@ -39,8 +39,6 @@ final class NewsViewModel {
         }
     }
     
-    typealias Completion = (Bool, APIError?) -> Void
-    
     // MARK: - Properties
     var data: [SectionType: [New]] = [:]
     var headlineNews: [New] = []
@@ -67,34 +65,37 @@ final class NewsViewModel {
 // MARK: - API
 extension NewsViewModel {
     
-    func loadAPI(type: SectionType, completion: @escaping Completion) {
+    func loadAPI(type: SectionType, completion: @escaping APICompletion) {
         let queryString = type.title()
-        NewsService.searchNews(keyword: queryString, pageSize: 5) { [weak self] searchNews in
+        
+        NewsService.searchNews(keyword: queryString, pageSize: 5) { [weak self] result in
             guard let this = self else {
-                completion(false, .error("URL is not valid"))
+                completion(.failure(Api.Error.instanceRelease))
                 return
             }
-            if let news = searchNews {
+            switch result {
+            case .success(let news):
                 this.data[type] = news
-                completion(true, nil)
-            } else {
-                completion(false, .error("Data is nil"))
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
     
-    func loadAPIHeadlines(compeltion: @escaping Completion) {
-        NewsService.getTopHeadlines(country: "us") { [weak self] headlineNews in
+    func loadAPIHeadlines(completion: @escaping APICompletion) {
+        NewsService.getTopHeadlines(country: "us") { [weak self] result in
             guard let this = self else {
-                compeltion(false, .error("URL is not valid"))
+                completion(.failure(Api.Error.instanceRelease))
                 return
             }
-            if let headlineNews = headlineNews {
-                this.headlineNews = headlineNews
-                compeltion(true, nil)
-            } else {
-                compeltion(false, .error("Data is nil"))
+            switch result {
+            case .success(let news):
+                this.headlineNews = news
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
-    }
+    }    
 }

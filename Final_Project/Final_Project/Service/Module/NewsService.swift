@@ -6,59 +6,58 @@
 //
 
 import Foundation
+import Alamofire
+import ObjectMapper
 
 final class NewsService {
     
     // MARK: - Get Service
-    class func searchNews(keyword: String, pageSize: Int, completion: @escaping ([New]?) -> Void) {
-        let urlString: String = ApiPath.searchNews
-        let parameters: [String: String] = ["q": keyword,
-                                            "pageSize": "\(pageSize)"]
-
-        API.shared().request(urlString: urlString, parameters: parameters) { result in
-            switch result {
-            case .success(let data):
-                var news: [New] = []
-                if let data = data {
-                    let jsonObject = data.toJSON()
-                    if let articles = jsonObject["articles"] as? [JSON] {
-                        for item in articles {
-                            let new = New(json: item)
-                            news.append(new)
-                        }
+    class func searchNews(keyword: String, pageSize: Int, completion: @escaping Completion<[New]>) {
+        let urlString = Api.Path.searchNews
+        let parameters: [String: Any] = ["q": keyword,
+                                         "pageSize": pageSize]
+        api.request(method: .get,
+                    urlString: urlString,
+                    parameters: parameters) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    guard let jsonObj = data as? JSObject,
+                          let jsonArr = jsonObj["articles"] as? JSArray else {
+                        completion(.failure(Api.Error.json))
+                        return
                     }
-                    completion(news)
-                } else {
-                    completion(nil)
+                    let news = Mapper<New>().mapArray(JSONArray: jsonArr)
+                    completion(.success(news))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-            case .failure:
-                completion(nil)
             }
         }
     }
-
-    class func getTopHeadlines(country: String, completion: @escaping ([New]?) -> Void) {
-        let urlString: String = ApiPath.topHeadlineNews
+    
+    class func getTopHeadlines(country: String, completion: @escaping Completion<[New]>) {
+        let urlString: String = Api.Path.topHeadlineNews
         let parameters: [String : String] = ["country": country]
-        API.shared().request(urlString: urlString, parameters: parameters) { result in
-            switch result {
-            case .success(let data):
-                var news: [New] = []
-                if let data = data {
-                    let jsonObject = data.toJSON()
-                    if let articles = jsonObject["articles"] as? [JSON] {
-                        for item in articles {
-                            let new = New(json: item)
-                            news.append(new)
-                        }
+        
+        api.request(method: .get,
+                    urlString: urlString,
+                    parameters: parameters) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    guard let jsonObjc = data as? JSObject,
+                          let jsonArr = jsonObjc["articles"] as? JSArray else {
+                        completion(.failure(Api.Error.json))
+                        return
                     }
-                    completion(news)
-                } else {
-                    completion(nil)
+                    let new = Mapper<New>().mapArray(JSONArray: jsonArr)
+                    completion(.success(new))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-            case .failure:
-                completion(nil)
             }
         }
     }
 }
+

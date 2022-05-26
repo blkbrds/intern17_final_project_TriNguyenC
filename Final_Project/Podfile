@@ -12,4 +12,12 @@ target 'Final_Project' do
   # Load image
   pod 'SDWebImage', '~> 5.0'
 
+  
+  # Utils
+  pod 'SwiftUtils', '4.2.1'
+
+  # Networking
+  pod 'Alamofire', '4.7.3'
+  pod 'ObjectMapper', '~> 3.5'
+
 end
