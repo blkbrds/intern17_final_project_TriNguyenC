@@ -52,59 +52,45 @@ final class NewsViewController: BaseViewController {
     
     // MARK: - Data
     override func setupData() {
+        fetchAPITopHeadlines()
         fetchAPI()
+    }
+    
+    
+    // MARK: - Fetch TopHeadlines
+    private func fetchAPITopHeadlines() {
+        viewModel.loadAPIHeadlines { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.collectionView.reloadData()
+            case .failure(let error):
+                this.alert(title: "Error", msg: error.localizedDescription, handler: nil)
+            }
+        }
     }
     
     // MARK: - Fetch Data
     private func fetchAPI() {
         let distchPathGroup = DispatchGroup()
-        
-        // Call Healine API
-        distchPathGroup.enter()
-        viewModel.loadAPIHeadlines { isSucess, error in
-            distchPathGroup.leave()
-        }
-        
         // Call Section API
-        distchPathGroup.enter()
-        viewModel.loadAPI(type: .general) { isSuccess, error in
-            distchPathGroup.leave()
-        }
-        
-        distchPathGroup.enter()
-        viewModel.loadAPI(type: .health) { isSuccess, error in
-            distchPathGroup.leave()
-        }
-        
-        distchPathGroup.enter()
-        viewModel.loadAPI(type: .sports) { isSuccess, error in
-            distchPathGroup.leave()
-        }
-        
-        distchPathGroup.enter()
-        viewModel.loadAPI(type: .science) { isSuccess, error in
-            distchPathGroup.leave()
-        }
-        
-        distchPathGroup.enter()
-        viewModel.loadAPI(type: .business) { isSucess, error in
-            distchPathGroup.leave()
-        }
-        
-        distchPathGroup.enter()
-        viewModel.loadAPI(type: .entertainment) { isSucess, error in
-            distchPathGroup.leave()
-        }
-        
-        distchPathGroup.enter()
-        viewModel.loadAPI(type: .technology) { isSucess, error in
-            distchPathGroup.leave()
+        for i in 0..<NewsViewModel.SectionType.allCases.count - 3 {
+            guard let type = NewsViewModel.SectionType(rawValue: i) else { return }
+            distchPathGroup.enter()
+            viewModel.loadAPI(type: type) { [weak self] result in
+                guard let this = self else { return }
+                switch result {
+                case .success: break
+                case .failure(let error):
+                    this.alert(title: "Error", msg: error.localizedDescription, handler: nil)
+                }
+                distchPathGroup.leave()
+            }
         }
         
         distchPathGroup.notify(queue: .main, execute: { [weak self] in
             guard let this = self else { return }
-                this.collectionView.reloadData()
-                this.tableView.reloadData()
+            this.tableView.reloadData()
         })
     }    
 }

@@ -46,18 +46,18 @@ final class CategoryDetailViewController: BaseViewController {
     
     // MARK: - Fetch API
     private func fetchAPI() {
-        viewModel?.loadAPI(completion: { [weak self] isSuccess, error in
-            guard let this = self else { return }
-            if isSuccess {
-                this.tableView.reloadData()
-            } else {
-                if let error = error {
-                    UIAlertController.showAlert(error: .error(error.localizedDescription), from: this)
-                } else {
-                    UIAlertController.showAlert(error: .errorURL, from: this)
-                }
-            }
-        })
+//        viewModel?.loadAPI(completion: { [weak self] isSuccess, error in
+//            guard let this = self else { return }
+//            if isSuccess {
+//                this.tableView.reloadData()
+//            } else {
+//                if let error = error {
+//                    UIAlertController.showAlert(error: .error(error.localizedDescription), from: this)
+//                } else {
+//                    UIAlertController.showAlert(error: .errorURL, from: this)
+//                }
+//            }
+//        })
     }    
 }
 

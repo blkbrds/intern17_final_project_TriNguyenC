@@ -8,8 +8,6 @@
 import Foundation
 
 final class CategoryViewModel {
-
-    typealias Completion = (Bool, APIError?) -> Void
     
     // MARK: - Properties
     var news: [New] = []
@@ -43,19 +41,19 @@ final class CategoryViewModel {
 // MARK: - API
 extension CategoryViewModel {
     
-    func loadAPI(completion: @escaping Completion) {
-        let queryString = categoryType.title()
-        NewsService.searchNewsCategory(keyword: queryString, page: page, pageSize: pageSize) { [weak self] searchNews in
-            guard let this = self else {
-                completion(false, .error("URL is not valid"))
-                return
-            }
-            if let news = searchNews {
-                this.news += news
-                completion(true, nil)
-            } else {
-                completion(false, .error("Data is nil"))
-            }
-        }
+    func loadAPI(completion: @escaping APICompletion) {
+//        let queryString = categoryType.title()
+//        NewsService.searchNewsCategory(keyword: queryString, page: page, pageSize: pageSize) { [weak self] searchNews in
+//            guard let this = self else {
+//                completion(false, .error("URL is not valid"))
+//                return
+//            }
+//            if let news = searchNews {
+//                this.news += news
+//                completion(true, nil)
+//            } else {
+//                completion(false, .error("Data is nil"))
+//            }
+//        }
     }
 }
