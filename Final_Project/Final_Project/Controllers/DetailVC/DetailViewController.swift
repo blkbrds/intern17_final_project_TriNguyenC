@@ -32,6 +32,7 @@ final class DetailViewController: BaseViewController {
         authorLabel.text = viewModel.new?.author
         contentLabel.text = viewModel.new?.content
         dateLabel.text = viewModel.new?.publishedAt
+        newsAcencyLabel.text = viewModel.new?.source?.name
         descriptionLabel.text = viewModel.new?.description
         thumbnailImageView.sd_setImage(with: viewModel.getImageURL(), placeholderImage: nil)
     }

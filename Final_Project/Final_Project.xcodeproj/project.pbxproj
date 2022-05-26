@@ -38,6 +38,12 @@
 		224A66E52833DB30002A5BC6 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 224A66E32833DB30002A5BC6 /* SearchViewController.xib */; };
 		224A66E92833DD9E002A5BC6 /* MyNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A66E72833DD9E002A5BC6 /* MyNewsViewController.swift */; };
 		224A66EA2833DD9E002A5BC6 /* MyNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 224A66E82833DD9E002A5BC6 /* MyNewsViewController.xib */; };
+		226594CB283C8D4D00A4B9D5 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226594C9283C8D4D00A4B9D5 /* CategoryDetailViewController.swift */; };
+		226594CC283C8D4D00A4B9D5 /* CategoryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226594CA283C8D4D00A4B9D5 /* CategoryDetailViewController.xib */; };
+		226594CF283C8E5500A4B9D5 /* HeaderSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226594CE283C8E5500A4B9D5 /* HeaderSectionView.swift */; };
+		226594D1283C8E6100A4B9D5 /* HeaderSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226594D0283C8E6100A4B9D5 /* HeaderSectionView.xib */; };
+		226594D3283CC60200A4B9D5 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226594D2283CC60200A4B9D5 /* CategoryViewModel.swift */; };
+		226594DA283CD11000A4B9D5 /* HeaderSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226594D9283CD11000A4B9D5 /* HeaderSectionViewModel.swift */; };
 		226B77B82837247E007AC7D5 /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B77B62837247E007AC7D5 /* HeaderCollectionViewCell.swift */; };
 		226B77B92837247E007AC7D5 /* HeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226B77B72837247E007AC7D5 /* HeaderCollectionViewCell.xib */; };
 		2295ABF32835DFA500732946 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2295ABF22835DFA500732946 /* PhotoService.swift */; };
@@ -83,6 +89,12 @@
 		224A66E32833DB30002A5BC6 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		224A66E72833DD9E002A5BC6 /* MyNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNewsViewController.swift; sourceTree = "<group>"; };
 		224A66E82833DD9E002A5BC6 /* MyNewsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyNewsViewController.xib; sourceTree = "<group>"; };
+		226594C9283C8D4D00A4B9D5 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
+		226594CA283C8D4D00A4B9D5 /* CategoryDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryDetailViewController.xib; sourceTree = "<group>"; };
+		226594CE283C8E5500A4B9D5 /* HeaderSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionView.swift; sourceTree = "<group>"; };
+		226594D0283C8E6100A4B9D5 /* HeaderSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderSectionView.xib; sourceTree = "<group>"; };
+		226594D2283CC60200A4B9D5 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		226594D9283CD11000A4B9D5 /* HeaderSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionViewModel.swift; sourceTree = "<group>"; };
 		226B77B62837247E007AC7D5 /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		226B77B72837247E007AC7D5 /* HeaderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCollectionViewCell.xib; sourceTree = "<group>"; };
 		2295ABF22835DFA500732946 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
@@ -213,6 +225,7 @@
 		22388BD428339A9500EE3DC8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				226594C8283C8D2300A4B9D5 /* CategoryDetailVC */,
 				224A66E62833DD8E002A5BC6 /* MyNewsVC */,
 				22388BE228339C4100EE3DC8 /* SearchVC */,
 				224A66DD2833D80C002A5BC6 /* DetailVC */,
@@ -244,6 +257,7 @@
 		22388BD728339AD000EE3DC8 /* NewsVC */ = {
 			isa = PBXGroup;
 			children = (
+				226594CD283C8E4400A4B9D5 /* HeaderView */,
 				22339BE52837A3D500EA8F6C /* Cell */,
 				22388BDE28339BE100EE3DC8 /* NewsViewController.swift */,
 				22388BDF28339BE100EE3DC8 /* NewsViewController.xib */,
@@ -288,6 +302,26 @@
 				224A66E82833DD9E002A5BC6 /* MyNewsViewController.xib */,
 			);
 			path = MyNewsVC;
+			sourceTree = "<group>";
+		};
+		226594C8283C8D2300A4B9D5 /* CategoryDetailVC */ = {
+			isa = PBXGroup;
+			children = (
+				226594C9283C8D4D00A4B9D5 /* CategoryDetailViewController.swift */,
+				226594CA283C8D4D00A4B9D5 /* CategoryDetailViewController.xib */,
+				226594D2283CC60200A4B9D5 /* CategoryViewModel.swift */,
+			);
+			path = CategoryDetailVC;
+			sourceTree = "<group>";
+		};
+		226594CD283C8E4400A4B9D5 /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				226594CE283C8E5500A4B9D5 /* HeaderSectionView.swift */,
+				226594D0283C8E6100A4B9D5 /* HeaderSectionView.xib */,
+				226594D9283CD11000A4B9D5 /* HeaderSectionViewModel.swift */,
+			);
+			path = HeaderView;
 			sourceTree = "<group>";
 		};
 		226B77B528372441007AC7D5 /* HeaderCell */ = {
@@ -403,6 +437,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				22388BCB283390BB00EE3DC8 /* LaunchScreen.storyboard in Resources */,
+				226594D1283C8E6100A4B9D5 /* HeaderSectionView.xib in Resources */,
+				226594CC283C8D4D00A4B9D5 /* CategoryDetailViewController.xib in Resources */,
 				224A66E12833D85C002A5BC6 /* DetailViewController.xib in Resources */,
 				22388BC8283390BB00EE3DC8 /* Assets.xcassets in Resources */,
 				224A66EA2833DD9E002A5BC6 /* MyNewsViewController.xib in Resources */,
@@ -474,12 +510,14 @@
 				22388BBF283390B800EE3DC8 /* AppDelegate.swift in Sources */,
 				22250AB7283B1963001832C8 /* DetailViewModel.swift in Sources */,
 				22388BEC2833A51300EE3DC8 /* MainTableViewCell.swift in Sources */,
+				226594CB283C8D4D00A4B9D5 /* CategoryDetailViewController.swift in Sources */,
 				22AAC2752834F18A000D6688 /* MainCellViewModel.swift in Sources */,
 				221879A8283E6B3400D25FF8 /* String.swift in Sources */,
 				221879A0283E62A900D25FF8 /* UIViewExt.swift in Sources */,
 				22388BC1283390B800EE3DC8 /* SceneDelegate.swift in Sources */,
 				22388BD928339AE100EE3DC8 /* BaseViewController.swift in Sources */,
 				22388BE028339BE100EE3DC8 /* NewsViewController.swift in Sources */,
+				226594CF283C8E5500A4B9D5 /* HeaderSectionView.swift in Sources */,
 				224A66E92833DD9E002A5BC6 /* MyNewsViewController.swift in Sources */,
 				22187993283E5B3900D25FF8 /* Error.swift in Sources */,
 				22AAC2622834A884000D6688 /* NewsViewModel.swift in Sources */,
@@ -487,10 +525,12 @@
 				22187999283E60B100D25FF8 /* CollectionExt.swift in Sources */,
 				22339BE42837A24800EA8F6C /* HeaderCollectionCellViewModel.swift in Sources */,
 				22388BDD28339AFD00EE3DC8 /* BaseTabbarViewController.swift in Sources */,
+				226594D3283CC60200A4B9D5 /* CategoryViewModel.swift in Sources */,
 				2218799E283E627E00D25FF8 /* UIViewControllerExt.swift in Sources */,
 				2295ABF32835DFA500732946 /* PhotoService.swift in Sources */,
 				2218798F283E5A8600D25FF8 /* RequestSerializer.swift in Sources */,
 				2295ABF62835E06E00732946 /* PhotoManager.swift in Sources */,
+				226594DA283CD11000A4B9D5 /* HeaderSectionViewModel.swift in Sources */,
 				22388BDB28339AEF00EE3DC8 /* BaseNavigationViewController.swift in Sources */,
 				2218799B283E60F000D25FF8 /* NSErrorExt.swift in Sources */,
 			);

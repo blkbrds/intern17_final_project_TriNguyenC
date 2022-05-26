@@ -42,11 +42,5 @@ final class MainTableViewCell: UITableViewCell {
         mainTitleLabel.text = viewModel.new?.title
         publishedAtLabel.text = viewModel.new?.publishedAt
         mainImageView.sd_setImage(with: viewModel.getImageURL(), placeholderImage: nil)
-
-//        viewModel.loadImage(completion: { [weak self] in
-//            guard let this = self, let imageData = viewModel.imageData else { return }
-//            let image = UIImage(data: imageData)
-//            this.mainImageView.image = image
-//        })
     }
 }

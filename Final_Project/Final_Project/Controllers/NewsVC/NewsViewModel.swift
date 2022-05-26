@@ -5,7 +5,7 @@
 //  Created by tri.nguyen on 18/05/2022.
 //
 
-import Foundation
+import UIKit
 
 final class NewsViewModel {
     
@@ -50,7 +50,7 @@ final class NewsViewModel {
         return MainCellViewModel(new: news[indexPath.row])
     }
     
-    func viewModelHeaderForCell(at indexPath: IndexPath) -> HeaderCollectionCellViewModel {
+    func viewModelHeaderForCollectionCell(at indexPath: IndexPath) -> HeaderCollectionCellViewModel {
         let new = headlineNews[indexPath.row]
         return HeaderCollectionCellViewModel(new: new)
     }
@@ -60,6 +60,15 @@ final class NewsViewModel {
               let news = data[type] else { return DetailViewModel(new: nil) }
         return DetailViewModel(new: news[indexPath.row])
     }
+    
+    func viewModelForDetailHeader(at indexPath: IndexPath) -> DetailViewModel {
+        return DetailViewModel(new: headlineNews[indexPath.row])
+    }
+    
+    func viewModelForSectionHeader(at section: Int) -> HeaderSectionViewModel {
+        guard let type = SectionType(rawValue: section) else { return HeaderSectionViewModel(sectionType: .general)}
+        return HeaderSectionViewModel(sectionType: type)
+    }    
 }
 
 // MARK: - API
