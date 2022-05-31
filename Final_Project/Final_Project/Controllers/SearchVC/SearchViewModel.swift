@@ -11,9 +11,9 @@ final class SearchViewModel {
     
     // MARK: - Enum
     enum SearchSection: Int, CaseIterable {
-        case base
-        case around
-        case more
+        case base = 0
+        case around = 1
+        case more = 2
         
         var title: String {
             switch self {
@@ -26,6 +26,9 @@ final class SearchViewModel {
             }
         }
     }
+    
+    // MARK: - Properties
+    var searchNews: [New] = []
     
     var data : [SearchSection: [String]] = [.base: Config.baseTopic,
                                             .around: Config.aroundTopic,
@@ -58,6 +61,7 @@ final class SearchViewModel {
     }
 }
 
+// MARK: - Dummy Data
 extension SearchViewModel {
 
     struct Config {

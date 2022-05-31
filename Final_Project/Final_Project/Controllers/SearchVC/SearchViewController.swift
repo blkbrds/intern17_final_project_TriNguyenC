@@ -19,8 +19,7 @@ class SearchViewController: BaseViewController {
     // MARK: - Properties
     private var viewModel = SearchViewModel()
     
-    // MARK: - Outlets
-    @IBOutlet private weak var searchBar: UISearchBar!
+    // MARK: - Outlet
     @IBOutlet private weak var collectionView: UICollectionView!
     
     // MARK: - Life cycle
@@ -43,7 +42,15 @@ class SearchViewController: BaseViewController {
         // delegate && datasource
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        // search controller
+        let search = UISearchController(searchResultsController: nil)
+        search.searchBar.delegate = self
+        search.obscuresBackgroundDuringPresentation = false
+        search.searchBar.placeholder = "Search topics"
+        navigationItem.searchController = search
 
+        // collection layout
         let flowLayout = LeftAlignedCollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = 15
         flowLayout.minimumInteritemSpacing = 20
@@ -93,5 +100,26 @@ extension SearchViewController: UICollectionViewDataSource {
             break
         }
         return UICollectionReusableView()
+    }
+}
+
+// MARK: - Extention UICollectionViewDelegate
+extension SearchViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = SearchResultViewController()
+        vc.viewModel.queryString = viewModel.getTitleForTopic(at: indexPath)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - Extention UISearchBarDelegate
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let queryText = searchBar.text else { return }
+        let searchResultVC = SearchResultViewController()
+        searchResultVC.viewModel.queryString = queryText
+        navigationController?.pushViewController(searchResultVC, animated: true)
     }
 }

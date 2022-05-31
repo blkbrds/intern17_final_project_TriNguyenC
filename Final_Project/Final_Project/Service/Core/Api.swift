@@ -11,7 +11,7 @@ import Alamofire
 final class Api {
 
     struct Path {
-        static let apiKey: String = "4b39660ad8544eb5a9c011157f6b42a6"
+        static let apiKey: String = "13de751985404bfd9aa348edba1c9972"
         static let baseURL: String = "https://newsapi.org/v2"
         static var searchNews: String { return baseURL + "/everything" }
         static var topHeadlineNews: String { return baseURL + "/top-headlines"}
