@@ -19,5 +19,6 @@ target 'Final_Project' do
   # Networking
   pod 'Alamofire', '4.7.3'
   pod 'ObjectMapper', '~> 3.5'
+  pod 'RealmSwift'
 
 end

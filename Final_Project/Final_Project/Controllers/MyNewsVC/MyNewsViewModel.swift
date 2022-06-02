@@ -8,10 +8,48 @@
 import Foundation
 import RealmSwift
 
+// MARK: - Protocol
+protocol MyNewsViewModelDelegate: AnyObject {
+    func viewModel(_ viewModel: MyNewsViewModel, needperformAction action: MyNewsViewModel.Action)
+}
+
 final class MyNewsViewModel {
+    
+    // MARK: - Enum
+    enum Action {
+        case reloadData
+    }
     
     // MARK: - Properties
     var myNews: [New] = []
+    
+    /// delegate
+    weak var delegate: MyNewsViewModelDelegate?
+    
+    /// realm Notification
+    private var notificationToken: NotificationToken?
+    
+    /// closure
+    var completion: (() -> Void)?
+    
+    /// notification Center
+    static let myNewNotification: String = "MyNewNotification"
+    
+    // MARK: - Obsever
+    func setupObseve() {
+        do {
+            let realm = try Realm()
+                        
+            notificationToken = realm.objects(New.self).observe({ [weak self] (change) in
+                guard let this = self else { return }
+//                this.delegate?.viewModel(this, needperformAction: .reloadData)
+                this.completion?()
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: MyNewsViewModel.kMyNewNontification), object: nil)
+            })
+        } catch  {
+            print("Error Of Object From Realm")
+        }
+    }
     
     // MARK: - Fetch Data
     func fetchData(completion: @escaping (Bool) -> ()) {

@@ -23,12 +23,26 @@ final class MyNewsViewController: BaseViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         fetchAPIRealm()
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        fetchAPIRealm()
+//    }
+
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//    }
+//
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+        /// Clear all data
+//    }
+//
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//    }
     
     // MARK: - UI
     override func setupUI() {
@@ -43,6 +57,20 @@ final class MyNewsViewController: BaseViewController {
         tableView.dataSource = self
     }
     
+    override func setupData() {
+        viewModel.setupObseve()
+        
+        /// closure
+        viewModel.completion = { [weak self] in
+            guard let this = self else { return }
+            this.fetchAPIRealm()
+        }
+//        viewModel.delegate = self
+        
+        /// Add notification cennter
+//        NotificationCenter.default.addObserver(self, selector: #selector(reloadData(_:)), name: NSNotification.Name(rawValue: MyNewsViewModel.myNewNotification), object: nil)
+    }
+    
     // MARK: - Fetch Realm
     private func fetchAPIRealm() {
         viewModel.fetchData(completion: { [weak self] (done) in
@@ -54,6 +82,12 @@ final class MyNewsViewController: BaseViewController {
             }
         })
     }
+
+    // MARK: - Objc
+    /// NotificationCenter
+//    @objc private func reloadData(_ notification: NSNotification) {
+//        fetchAPIRealm()
+//    }
 }
 
 // MARK: - Extention UITableViewDelegate
@@ -84,3 +118,11 @@ extension MyNewsViewController: UITableViewDataSource {
         return cell
     }
 }
+
+//// MARK: - Implement MyNewsViewModelDelegate
+//extension MyNewsViewController: MyNewsViewModelDelegate {
+//
+//    func viewModel(_ viewModel: MyNewsViewModel, needperformAction action: MyNewsViewModel.Action) {
+//        fetchAPIRealm()
+//    }
+//}
