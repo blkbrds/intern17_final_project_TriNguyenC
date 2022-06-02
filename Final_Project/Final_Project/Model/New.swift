@@ -7,28 +7,32 @@
 
 import Foundation
 import ObjectMapper
+import RealmSwift
 
-final class New: Mappable {
+final class New: Object, Mappable {
 
     // MARK: Properties
-    var author: String = ""
-    var title: String = ""
-    var description: String = ""
-    var url: String = ""
-    var urlToImage: String = ""
-    var publishedAt: String = ""
-    var content: String = ""
-    var source: Source?
+    @objc dynamic var author: String = ""
+    @objc dynamic var title: String = ""
+    @objc dynamic var descriptions: String = ""
+    @objc dynamic var url: String = ""
+    @objc dynamic var urlToImage: String = ""
+    @objc dynamic var publishedAt: String = ""
+    @objc dynamic var content: String = ""
+    @objc dynamic var source: Source?
     
-    required convenience init?(map: Map) {
+    override class func primaryKey() -> String? {
+        return "title"
+    }
+    
+    required convenience init?(map: ObjectMapper.Map) {
         self.init()
     }
-
     
-    func mapping(map: Map) {
+    func mapping(map: ObjectMapper.Map) {
         author <- map["author"]
         title  <- map["title"]
-        description <- map["description"]
+        descriptions <- map["description"]
         url <- map["url"]
         urlToImage <- map["urlToImage"]
         publishedAt <- map["publishedAt"]
@@ -37,20 +41,17 @@ final class New: Mappable {
     }
 }
 
-final class Source: Mappable {
-
+final class Source: Object, Mappable {
     // MARK: - Properties
-    var id: String = ""
-    var name: String = ""
-
-    required convenience init?(map: Map) {
+    @objc dynamic var id: String = ""
+    @objc dynamic var name: String = ""
+    
+    required convenience init?(map: ObjectMapper.Map) {
         self.init()
     }
     
-    func mapping(map: Map) {
+    func mapping(map: ObjectMapper.Map) {
         id <- map["id"]
         name <- map["name"]
     }
 }
-
-
