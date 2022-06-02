@@ -42,18 +42,19 @@ final class CategoryViewModel {
 extension CategoryViewModel {
     
     func loadAPI(completion: @escaping APICompletion) {
-//        let queryString = categoryType.title()
-//        NewsService.searchNewsCategory(keyword: queryString, page: page, pageSize: pageSize) { [weak self] searchNews in
-//            guard let this = self else {
-//                completion(false, .error("URL is not valid"))
-//                return
-//            }
-//            if let news = searchNews {
-//                this.news += news
-//                completion(true, nil)
-//            } else {
-//                completion(false, .error("Data is nil"))
-//            }
-//        }
+        let queryString = categoryType.title()
+        NewsService.searchNewsCategory(keyword: queryString, page: page, pageSize: pageSize) { [weak self] result in
+            guard let this = self else {
+                completion(.failure(Api.Error.instanceRelease))
+                return
+            }
+            switch result {
+            case .success(let news):
+                this.news += news
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }

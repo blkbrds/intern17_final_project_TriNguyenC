@@ -20,6 +20,7 @@
 		221879A6283E6B1300D25FF8 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221879A5283E6B1300D25FF8 /* Errors.swift */; };
 		221879A8283E6B3400D25FF8 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221879A7283E6B3400D25FF8 /* String.swift */; };
 		22250AB7283B1963001832C8 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22250AB6283B1963001832C8 /* DetailViewModel.swift */; };
+		222CCA5628475F980038DC9D /* MyNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222CCA5528475F980038DC9D /* MyNewsViewModel.swift */; };
 		22339BE42837A24800EA8F6C /* HeaderCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22339BE32837A24800EA8F6C /* HeaderCollectionCellViewModel.swift */; };
 		22388BBF283390B800EE3DC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22388BBE283390B800EE3DC8 /* AppDelegate.swift */; };
 		22388BC1283390B800EE3DC8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22388BC0283390B800EE3DC8 /* SceneDelegate.swift */; };
@@ -62,9 +63,6 @@
 		22E6B1E2284462A3002E874B /* UICollectionViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6B1E1284462A3002E874B /* UICollectionViewExt.swift */; };
 		22E6B1FF284486AD002E874B /* HeaderSearchSectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6B1FD284486AC002E874B /* HeaderSearchSectionCollectionReusableView.swift */; };
 		22E6B200284486AD002E874B /* HeaderSearchSectionCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E6B1FE284486AD002E874B /* HeaderSearchSectionCollectionReusableView.xib */; };
-		22E6B2042844D5FE002E874B /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6B2022844D5FE002E874B /* SearchResultViewController.swift */; };
-		22E6B2052844D5FE002E874B /* SearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E6B2032844D5FE002E874B /* SearchResultViewController.xib */; };
-		22E6B2072844DA21002E874B /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6B2062844DA21002E874B /* SearchResultViewModel.swift */; };
 		2B8A94DDB1AA5B0271F183D5 /* Pods_Final_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 687F0276FDA58A5405FC16CC /* Pods_Final_Project.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +80,7 @@
 		221879A5283E6B1300D25FF8 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		221879A7283E6B3400D25FF8 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		22250AB6283B1963001832C8 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		222CCA5528475F980038DC9D /* MyNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNewsViewModel.swift; sourceTree = "<group>"; };
 		22339BE32837A24800EA8F6C /* HeaderCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionCellViewModel.swift; sourceTree = "<group>"; };
 		22339BE62837A4BD00EA8F6C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22388BBB283390B800EE3DC8 /* Final_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Final_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,9 +125,6 @@
 		22E6B1E1284462A3002E874B /* UICollectionViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExt.swift; sourceTree = "<group>"; };
 		22E6B1FD284486AC002E874B /* HeaderSearchSectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSearchSectionCollectionReusableView.swift; sourceTree = "<group>"; };
 		22E6B1FE284486AD002E874B /* HeaderSearchSectionCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderSearchSectionCollectionReusableView.xib; sourceTree = "<group>"; };
-		22E6B2022844D5FE002E874B /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
-		22E6B2032844D5FE002E874B /* SearchResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultViewController.xib; sourceTree = "<group>"; };
-		22E6B2062844DA21002E874B /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		33D73900F75713081D557339 /* Pods-Final_Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Final_Project.release.xcconfig"; path = "Target Support Files/Pods-Final_Project/Pods-Final_Project.release.xcconfig"; sourceTree = "<group>"; };
 		687F0276FDA58A5405FC16CC /* Pods_Final_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Final_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD96585B077F87A3C89DBD1D /* Pods-Final_Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Final_Project.debug.xcconfig"; path = "Target Support Files/Pods-Final_Project/Pods-Final_Project.debug.xcconfig"; sourceTree = "<group>"; };
@@ -252,7 +248,6 @@
 		22388BD428339A9500EE3DC8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				22E6B2012844D5DB002E874B /* SearchResultVC */,
 				226594C8283C8D2300A4B9D5 /* CategoryDetailVC */,
 				224A66E62833DD8E002A5BC6 /* MyNewsVC */,
 				22388BE228339C4100EE3DC8 /* SearchVC */,
@@ -330,6 +325,7 @@
 			children = (
 				224A66E72833DD9E002A5BC6 /* MyNewsViewController.swift */,
 				224A66E82833DD9E002A5BC6 /* MyNewsViewController.xib */,
+				222CCA5528475F980038DC9D /* MyNewsViewModel.swift */,
 			);
 			path = MyNewsVC;
 			sourceTree = "<group>";
@@ -428,16 +424,6 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
-		22E6B2012844D5DB002E874B /* SearchResultVC */ = {
-			isa = PBXGroup;
-			children = (
-				22E6B2022844D5FE002E874B /* SearchResultViewController.swift */,
-				22E6B2032844D5FE002E874B /* SearchResultViewController.xib */,
-				22E6B2062844DA21002E874B /* SearchResultViewModel.swift */,
-			);
-			path = SearchResultVC;
-			sourceTree = "<group>";
-		};
 		B4F0743B4E347BF214E95FCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,7 +514,6 @@
 				22388BED2833A51300EE3DC8 /* MainTableViewCell.xib in Resources */,
 				224A66E52833DB30002A5BC6 /* SearchViewController.xib in Resources */,
 				226B77B92837247E007AC7D5 /* HeaderCollectionViewCell.xib in Resources */,
-				22E6B2052844D5FE002E874B /* SearchResultViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,12 +589,11 @@
 				22388BE028339BE100EE3DC8 /* NewsViewController.swift in Sources */,
 				226594CF283C8E5500A4B9D5 /* HeaderSectionView.swift in Sources */,
 				22A704B82841B13000903E86 /* SearchViewModel.swift in Sources */,
-				22E6B2072844DA21002E874B /* SearchResultViewModel.swift in Sources */,
 				224A66E92833DD9E002A5BC6 /* MyNewsViewController.swift in Sources */,
 				22187993283E5B3900D25FF8 /* Error.swift in Sources */,
 				2270537F284359A100944BDF /* MoreTopicCollectionCellModel.swift in Sources */,
 				22AAC2622834A884000D6688 /* NewsViewModel.swift in Sources */,
-				22E6B2042844D5FE002E874B /* SearchResultViewController.swift in Sources */,
+				222CCA5628475F980038DC9D /* MyNewsViewModel.swift in Sources */,
 				226B77B82837247E007AC7D5 /* HeaderCollectionViewCell.swift in Sources */,
 				22187999283E60B100D25FF8 /* CollectionExt.swift in Sources */,
 				22339BE42837A24800EA8F6C /* HeaderCollectionCellViewModel.swift in Sources */,
