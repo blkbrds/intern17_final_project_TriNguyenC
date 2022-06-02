@@ -1,0 +1,24 @@
+platform :ios, '9.0'
+
+target 'Final_Project' do
+  use_frameworks!
+
+  # UI
+  pod 'SVProgressHUD', '2.2.5'
+  
+  # Tool to enforce Swift style and conventions
+  pod 'SwiftLint', '0.27.0'
+
+  # Load image
+  pod 'SDWebImage', '~> 5.0'
+
+  
+  # Utils
+  pod 'SwiftUtils', '4.2.1'
+
+  # Networking
+  pod 'Alamofire', '4.7.3'
+  pod 'ObjectMapper', '~> 3.5'
+  pod 'RealmSwift'
+
+end
