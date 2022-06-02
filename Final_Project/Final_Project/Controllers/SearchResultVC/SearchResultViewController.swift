@@ -76,6 +76,11 @@ extension SearchResultViewController: UITableViewDelegate {
         vc.viewModel = viewModel.viewModelForDetail(at: indexPath)
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let isLoadMore = viewModel.checkLoadMoreSearch(at: indexPath)
+        if isLoadMore { loadResultSearchAPI() }
+    }
 }
 
 // MARK: - Extention UITableViewDataSource

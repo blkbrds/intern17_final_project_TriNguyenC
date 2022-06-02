@@ -12,6 +12,8 @@ final class SearchResultViewModel {
     // MARK: - Properties
     var queryString: String = ""
     private(set) var resultNews: [New] = []
+    var page: Int = 1
+    var pageSize: Int = 20
 
     // MARK: Init
     init(queryString: String) {
@@ -27,16 +29,25 @@ final class SearchResultViewModel {
         return DetailViewModel(new: resultNews[indexPath.row])
     }
     
+    // MARK: - Load More
+    func checkLoadMoreSearch(at indexPath: IndexPath) -> Bool {
+        if indexPath.row == resultNews.count - 1 {
+            page += 1
+            return true
+        }
+        return false
+    }
+    
     // MARK: - Load API
     func loadAPI(completion: @escaping APICompletion) {
-        NewsService.searchNews(keyword: queryString, pageSize: 8) { [weak self] result in
+        NewsService.searchNewsCategory(keyword: queryString, page: page, pageSize: pageSize) { [weak self] result in
             guard let this = self else {
                 completion(.failure(Api.Error.instanceRelease))
                 return
             }
             switch result {
             case .success(let news):
-                this.resultNews = news
+                this.resultNews += news
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))

@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-class SearchViewController: BaseViewController {
+final class SearchViewController: BaseViewController {
     
     // MARK: - Enum
     enum Identifier: String {
@@ -47,7 +47,9 @@ class SearchViewController: BaseViewController {
         let search = UISearchController(searchResultsController: nil)
         search.searchBar.delegate = self
         search.obscuresBackgroundDuringPresentation = false
-        search.searchBar.placeholder = "Search topics"
+        search.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search topics", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        search.searchBar.searchTextField.leftView?.tintColor = .white
+        search.searchBar.barStyle = .black
         navigationItem.searchController = search
 
         // collection layout
