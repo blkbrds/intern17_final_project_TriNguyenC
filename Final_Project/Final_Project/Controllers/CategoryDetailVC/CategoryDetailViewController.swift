@@ -46,27 +46,25 @@ final class CategoryDetailViewController: BaseViewController {
     
     // MARK: - Fetch API
     private func fetchAPI() {
-//        viewModel?.loadAPI(completion: { [weak self] isSuccess, error in
-//            guard let this = self else { return }
-//            if isSuccess {
-//                this.tableView.reloadData()
-//            } else {
-//                if let error = error {
-//                    UIAlertController.showAlert(error: .error(error.localizedDescription), from: this)
-//                } else {
-//                    UIAlertController.showAlert(error: .errorURL, from: this)
-//                }
-//            }
-//        })
-    }    
+        guard let viewModel = viewModel else { return }
+        viewModel.loadAPI { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.tableView.reloadData()
+            case .failure(let error):
+                this.alert(title: "Error", msg: error.localizedDescription, handler: nil)
+            }
+        }
+    }
 }
 
 // MARK: - Extention UITableViewDelegate
 extension CategoryDetailViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.mainCell.rawValue, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
-        cell.viewModel = viewModel?.viewModelForCell(at: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.mainCell.rawValue, for: indexPath) as? MainTableViewCell, let viewModel = viewModel else { return UITableViewCell() }
+        cell.viewModel = viewModel.viewModelForCell(at: indexPath)
         return cell
     }
     
