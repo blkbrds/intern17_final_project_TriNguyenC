@@ -57,7 +57,7 @@ final class NewsViewModel {
     
     func viewModelForDetail(at indexPath: IndexPath) -> DetailViewModel {
         guard let type = NewsViewModel.SectionType(rawValue: indexPath.section),
-              let news = data[type] else { return DetailViewModel(new: nil) }
+              let news = data[type] else { return DetailViewModel(new: New()) }
         return DetailViewModel(new: news[indexPath.row])
     }
     

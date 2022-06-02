@@ -35,7 +35,7 @@ class BaseTabbarViewController: UITabBarController {
         // Tabbar
         self.viewControllers = [newsNav, searchNav, myNewsNav]
         self.tabBar.tintColor = .white
-        self.tabBar.barTintColor =  UIColor(red: 135/255, green: 206/255, blue: 250/255, alpha: 1.0)
-        self.tabBar.backgroundColor =  UIColor(red: 135/255, green: 206/255, blue: 250/255, alpha: 1.0)
+        self.tabBar.barTintColor = .black
+        self.tabBar.backgroundColor = .black
     }
 }

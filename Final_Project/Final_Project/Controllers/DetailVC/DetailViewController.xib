@@ -15,6 +15,7 @@
                 <outlet property="contentLabel" destination="bgd-WB-q4l" id="RYX-Hn-p6I"/>
                 <outlet property="dateLabel" destination="cIK-n5-EiZ" id="4Ur-PK-JGS"/>
                 <outlet property="descriptionLabel" destination="J2M-uP-wBp" id="tpl-8m-Vem"/>
+                <outlet property="favoriteButton" destination="hrg-f3-Y8v" id="Kpd-8L-9Gy"/>
                 <outlet property="newsAcencyLabel" destination="LSD-LX-ij3" id="BxB-pH-r6I"/>
                 <outlet property="thumbnailImageView" destination="GDY-9S-FhT" id="aaH-HO-gyB"/>
                 <outlet property="titleDetailLabel" destination="iuQ-st-MIG" id="CXD-aR-GBg"/>
@@ -66,11 +67,24 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="source" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSD-LX-ij3" userLabel="Newsacency">
-                                            <rect key="frame" x="181" y="0.0" width="213" height="30"/>
+                                            <rect key="frame" x="181" y="0.0" width="168" height="30"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                             <color key="textColor" systemColor="systemRedColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrg-f3-Y8v">
+                                            <rect key="frame" x="364" y="0.0" width="30" height="30"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="8UW-Cl-spF"/>
+                                                <constraint firstAttribute="height" constant="30" id="OwL-Fh-aX6"/>
+                                            </constraints>
+                                            <color key="tintColor" systemColor="systemYellowColor"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system"/>
+                                            <connections>
+                                                <action selector="favoriteTapTouchUpInside:" destination="-1" eventType="touchUpInside" id="MGu-Ee-yG4"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -91,7 +105,7 @@
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tri" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ni0-oE-7cA" userLabel="title">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tri" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ni0-oE-7cA">
                                     <rect key="frame" x="10" y="359" width="394" height="20"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -149,6 +163,7 @@
         </view>
     </objects>
     <resources>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -157,6 +172,9 @@
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
