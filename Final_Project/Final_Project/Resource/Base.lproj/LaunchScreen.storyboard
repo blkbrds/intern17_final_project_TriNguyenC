@@ -15,8 +15,22 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-bbc" translatesAutoresizingMaskIntoConstraints="NO" id="MxR-18-PU3">
+                                <rect key="frame" x="107" y="398" width="200" height="100"/>
+                                <color key="backgroundColor" red="0.2701017633833066" green="0.07984668943913531" blue="0.10777230602731488" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="4wL-dm-kT4"/>
+                                    <constraint firstAttribute="height" constant="100" id="9OV-1B-NQV"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.43927799391024036" green="0.13994901990316411" blue="0.11524752217796475" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="MxR-18-PU3" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="BB2-xa-3NI"/>
+                            <constraint firstItem="MxR-18-PU3" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="dYJ-dL-Aib"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +38,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic-bbc" width="1280" height="960"/>
+    </resources>
 </document>
