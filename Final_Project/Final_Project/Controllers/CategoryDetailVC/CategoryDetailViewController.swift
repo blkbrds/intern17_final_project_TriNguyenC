@@ -47,7 +47,9 @@ final class CategoryDetailViewController: BaseViewController {
     // MARK: - Fetch API
     private func fetchAPI() {
         guard let viewModel = viewModel else { return }
+        hud.show()
         viewModel.loadAPI { [weak self] result in
+            hud.dismiss()
             guard let this = self else { return }
             switch result {
             case .success:

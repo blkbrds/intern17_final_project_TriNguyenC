@@ -46,7 +46,9 @@ class SearchResultViewController: BaseViewController {
     
     // MARK: - Load API
     private func loadResultSearchAPI() {
+        hud.show()
         viewModel.loadAPI { [weak self] result in
+            hud.dismiss()
             guard let this = self else { return }
             switch result {
             case .success: this.tableView.reloadData()

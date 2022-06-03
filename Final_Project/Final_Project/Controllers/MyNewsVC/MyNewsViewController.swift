@@ -73,7 +73,9 @@ final class MyNewsViewController: BaseViewController {
     
     // MARK: - Fetch Realm
     private func fetchAPIRealm() {
+        hud.show()
         viewModel.fetchData(completion: { [weak self] (done) in
+            hud.dismiss()
             guard let this = self else { return }
             if done {
                 this.tableView.reloadData()

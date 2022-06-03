@@ -60,6 +60,30 @@ final class SearchViewController: BaseViewController {
         flowLayout.headerReferenceSize = CGSize(width: collectionView.frame.width, height: 40)
         collectionView.collectionViewLayout = flowLayout
     }
+    
+    // MARK: - Data
+    override func setupData() {
+        viewModel.setupObserve()
+        /// closure
+        viewModel.completion = { [weak self] in
+            guard let this = self else { return }
+            this.fetchAPISearchRealm()
+        }
+    }
+
+    // MARK: - Fetch Realm
+    private func fetchAPISearchRealm() {
+        hud.show()
+        viewModel.fetchData(completion: { [weak self] (done) in
+            hud.dismiss()
+            guard let this = self else { return }
+            if done {
+                this.collectionView.reloadData()
+            } else {
+                print("Error Of Object From Realm")
+            }
+        })
+    }
 }
 
 // MARK: - Extention UICollectionViewDelegateFlowLayout
@@ -122,6 +146,7 @@ extension SearchViewController: UISearchBarDelegate {
         guard let queryText = searchBar.text else { return }
         let searchResultVC = SearchResultViewController()
         searchResultVC.viewModel.queryString = queryText
+        viewModel.isAddRealmForHistory(query: queryText) // add history to realm
         navigationController?.pushViewController(searchResultVC, animated: true)
     }
 }
