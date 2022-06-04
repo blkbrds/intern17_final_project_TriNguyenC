@@ -19,6 +19,8 @@
 		221879A4283E6AE900D25FF8 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221879A3283E6AE900D25FF8 /* App.swift */; };
 		221879A6283E6B1300D25FF8 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221879A5283E6B1300D25FF8 /* Errors.swift */; };
 		221879A8283E6B3400D25FF8 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221879A7283E6B3400D25FF8 /* String.swift */; };
+		221C44A6284B5AF400B0CA26 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C44A4284B5AF400B0CA26 /* SplashViewController.swift */; };
+		221C44A7284B5AF400B0CA26 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 221C44A5284B5AF400B0CA26 /* SplashViewController.xib */; };
 		22250AB7283B1963001832C8 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22250AB6283B1963001832C8 /* DetailViewModel.swift */; };
 		222CCA5628475F980038DC9D /* MyNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222CCA5528475F980038DC9D /* MyNewsViewModel.swift */; };
 		2231937A2849F5B000692A0C /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223193792849F5B000692A0C /* History.swift */; };
@@ -83,6 +85,8 @@
 		221879A3283E6AE900D25FF8 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		221879A5283E6B1300D25FF8 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		221879A7283E6B3400D25FF8 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		221C44A4284B5AF400B0CA26 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		221C44A5284B5AF400B0CA26 /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		22250AB6283B1963001832C8 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		222CCA5528475F980038DC9D /* MyNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNewsViewModel.swift; sourceTree = "<group>"; };
 		223193792849F5B000692A0C /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
@@ -160,6 +164,15 @@
 				22E6B1E1284462A3002E874B /* UICollectionViewExt.swift */,
 			);
 			path = Ext;
+			sourceTree = "<group>";
+		};
+		221C44A3284B5AE200B0CA26 /* SplashVC */ = {
+			isa = PBXGroup;
+			children = (
+				221C44A4284B5AF400B0CA26 /* SplashViewController.swift */,
+				221C44A5284B5AF400B0CA26 /* SplashViewController.xib */,
+			);
+			path = SplashVC;
 			sourceTree = "<group>";
 		};
 		22339BDE28377D8000EA8F6C /* Define */ = {
@@ -257,6 +270,7 @@
 		22388BD428339A9500EE3DC8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				221C44A3284B5AE200B0CA26 /* SplashVC */,
 				228732BC2848B62200F15EE3 /* SearchResultVC */,
 				226594C8283C8D2300A4B9D5 /* CategoryDetailVC */,
 				224A66E62833DD8E002A5BC6 /* MyNewsVC */,
@@ -534,6 +548,7 @@
 				22388BED2833A51300EE3DC8 /* MainTableViewCell.xib in Resources */,
 				224A66E52833DB30002A5BC6 /* SearchViewController.xib in Resources */,
 				226B77B92837247E007AC7D5 /* HeaderCollectionViewCell.xib in Resources */,
+				221C44A7284B5AF400B0CA26 /* SplashViewController.xib in Resources */,
 				228732C12848B62200F15EE3 /* SearchResultViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -628,6 +643,7 @@
 				2218798F283E5A8600D25FF8 /* RequestSerializer.swift in Sources */,
 				2295ABF62835E06E00732946 /* PhotoManager.swift in Sources */,
 				2288B7FF28439B27002C2A2E /* HistoryCollectionCellModel.swift in Sources */,
+				221C44A6284B5AF400B0CA26 /* SplashViewController.swift in Sources */,
 				226594DA283CD11000A4B9D5 /* HeaderSectionViewModel.swift in Sources */,
 				22388BDB28339AEF00EE3DC8 /* BaseNavigationViewController.swift in Sources */,
 				22E6B1FF284486AD002E874B /* HeaderSearchSectionCollectionReusableView.swift in Sources */,

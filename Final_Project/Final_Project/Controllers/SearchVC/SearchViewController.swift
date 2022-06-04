@@ -21,11 +21,16 @@ final class SearchViewController: BaseViewController {
     
     // MARK: - Outlet
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var fadeView: UIView!
     
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.reloadData()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchAPISearchRealm()
     }
     
     // MARK: - UI
@@ -50,6 +55,7 @@ final class SearchViewController: BaseViewController {
         search.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search topics", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         search.searchBar.searchTextField.leftView?.tintColor = .white
         search.searchBar.barStyle = .black
+        search.searchBar.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
         navigationItem.searchController = search
 
         // collection layout
@@ -59,16 +65,6 @@ final class SearchViewController: BaseViewController {
         flowLayout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         flowLayout.headerReferenceSize = CGSize(width: collectionView.frame.width, height: 40)
         collectionView.collectionViewLayout = flowLayout
-    }
-    
-    // MARK: - Data
-    override func setupData() {
-        viewModel.setupObserve()
-        /// closure
-        viewModel.completion = { [weak self] in
-            guard let this = self else { return }
-            this.fetchAPISearchRealm()
-        }
     }
 
     // MARK: - Fetch Realm
@@ -84,17 +80,37 @@ final class SearchViewController: BaseViewController {
             }
         })
     }
+
+    // MARK: - Private Function
+    private func handlePushToSearchResult(_ searchResultVM: SearchResultViewModel, needSaveHistory: Bool = false) {
+        let searchResultVC = SearchResultViewController()
+        searchResultVC.bind(viewModel: searchResultVM)
+        if needSaveHistory {
+            viewModel.saveKeyword(searchResultVM.queryString)
+        }
+        navigationController?.pushViewController(searchResultVC, animated: true)
+    }
 }
 
 // MARK: - Extention UICollectionViewDelegateFlowLayout
 extension SearchViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let tag = viewModel.getTitleForTopic(at: indexPath)
-        let label = UILabel(frame: CGRect.zero)
-        label.text = tag
-        label.sizeToFit()
-        return CGSize(width: label.bounds.size.width + 20, height: 45)
+        let sectionType = SearchSection.allCases[indexPath.section]
+        let titleString = viewModel.getTitle(at: indexPath.item, by: sectionType)
+        let maskLabel = UILabel(frame: .zero)
+        maskLabel.text = titleString
+        maskLabel.sizeToFit()
+        let verticalSpacing: CGFloat = 10
+        
+        let labelWidth = maskLabel.bounds.width + (verticalSpacing * 2)
+        let labelHeight: CGFloat = 45
+        return CGSize(width: labelWidth, height: labelHeight)
+//        let tag = viewModel.getTitleForTopic(at: indexPath)
+//        let label = UILabel(frame: CGRect.zero)
+//        label.text = tag
+//        label.sizeToFit()
+//        return CGSize(width: label.bounds.size.width + 20, height: 45)
     }
 }
 
@@ -102,11 +118,14 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
 extension SearchViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return viewModel.numberOfSections()
+//        return viewModel.numberOfSections()
+        return SearchSection.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numberOfRow(in: section)
+        let sectionType = SearchSection.allCases[section]
+        return viewModel.getNumberItemOfSections(at: section, by: sectionType)
+//        return viewModel.numberOfRow(in: section)
     }
         
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -133,9 +152,10 @@ extension SearchViewController: UICollectionViewDataSource {
 extension SearchViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = SearchResultViewController()
-        vc.viewModel.queryString = viewModel.getTitleForTopic(at: indexPath)
-        navigationController?.pushViewController(vc, animated: true)
+        let sectionType = SearchSection.allCases[indexPath.section]
+        let keywordString = viewModel.getTitle(at: indexPath.item, by: sectionType)
+        let searchResultVM = SearchResultViewModel(queryString: keywordString)
+        handlePushToSearchResult(searchResultVM)
     }
 }
 
@@ -144,9 +164,24 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let queryText = searchBar.text else { return }
-        let searchResultVC = SearchResultViewController()
-        searchResultVC.viewModel.queryString = queryText
-        viewModel.isAddRealmForHistory(query: queryText) // add history to realm
-        navigationController?.pushViewController(searchResultVC, animated: true)
+        let searchResultVM = SearchResultViewModel(queryString: queryText)
+        handlePushToSearchResult(searchResultVM, needSaveHistory: true)
+    }
+
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        fadeView.bringSubviewToFront(collectionView)
+        fadeView.alpha = 0
+        UIView.animate(withDuration: 0.6) {
+            self.fadeView.alpha = 0.4
+        }
+        return true
+    }
+
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        collectionView.bringSubviewToFront(fadeView)
+        UIView.animate(withDuration: 0.6) {
+            self.fadeView.alpha = 0
+        }
+        return true
     }
 }

@@ -7,6 +7,17 @@
 
 import UIKit
 
+enum RootType {
+    case splash, top
+}
+
+var sceneDelegate: SceneDelegate? {
+    
+    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+        let delegate = windowScene.delegate as? SceneDelegate else { return nil }
+     return delegate
+}
+
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
@@ -18,10 +29,20 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window = self.window
         }
-        let tabbarVC = BaseTabbarViewController()
-        let navi = BaseNavigationViewController(rootViewController: tabbarVC)
-        window.rootViewController = navi
+        swapRoot(.splash)
+    }
+
+    func swapRoot(_ rootType: RootType) {
+        guard let window = window else { return }
+        switch rootType {
+        case .splash:
+            let splashVC = SplashViewController()
+            let navigation = BaseNavigationViewController(rootViewController: splashVC)
+            window.rootViewController = navigation
+        case .top:
+            let tabbarVC = BaseTabbarViewController()
+            window.rootViewController = tabbarVC
+        }
         window.makeKeyAndVisible()
     }
 }
-

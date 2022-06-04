@@ -18,7 +18,7 @@ class SearchResultViewController: BaseViewController {
     @IBOutlet private weak var tableView: UITableView!
     
     // MARK: - Properties
-    var viewModel = SearchResultViewModel(queryString: "")
+    private var viewModel = SearchResultViewModel(queryString: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,10 @@ class SearchResultViewController: BaseViewController {
     override func setupUI() {
         title = viewModel.queryString
         configTableView()
+    }
+
+    func bind(viewModel: SearchResultViewModel) {
+        self.viewModel = viewModel
     }
     
     // MARK: - Config
