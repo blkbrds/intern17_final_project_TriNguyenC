@@ -39,7 +39,7 @@ final class DetailViewController: BaseViewController {
         guard let viewModel = viewModel else { return }
         titleDetailLabel.text = viewModel.new.title
         authorLabel.text = "By \(viewModel.new.author)"
-        contentLabel.text = viewModel.new.content
+        contentLabel.text = viewModel.new.content + DetailViewModel.Config.dummyData
         dateLabel.text = viewModel.new.publishedAt
         newsAcencyLabel.text = viewModel.new.source?.name
         descriptionLabel.text = viewModel.new.descriptions
