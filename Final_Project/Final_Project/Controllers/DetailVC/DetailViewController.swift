@@ -30,8 +30,14 @@ final class DetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
         guard let viewModel = viewModel else { return }
         favoriteButton.tintColor = viewModel.isAddedRealm() ? .red : .gray
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: - UI
