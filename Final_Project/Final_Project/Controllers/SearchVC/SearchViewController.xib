@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="Final_Project" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="7S6-gW-6T1" id="gsA-4g-QI5"/>
-                <outlet property="searchBar" destination="ndh-zU-vaF" id="Jt2-G2-iSB"/>
+                <outlet property="fadeView" destination="NoR-f0-QhT" id="rVA-xZ-O6f"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,12 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" placeholder="Search topics" translatesAutoresizingMaskIntoConstraints="NO" id="ndh-zU-vaF">
-                    <rect key="frame" x="5" y="44" width="325.5" height="51"/>
-                    <textInputTraits key="textInputTraits"/>
-                </searchBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="7S6-gW-6T1">
-                    <rect key="frame" x="0.0" y="95" width="414" height="767"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2at-DW-jiD">
                         <size key="itemSize" width="128" height="128"/>
@@ -35,23 +31,21 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="reW-3Q-hfE">
-                    <rect key="frame" x="340.5" y="49" width="68.5" height="31"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
-                </button>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NoR-f0-QhT" userLabel="Fade View">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="NoR-f0-QhT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3hV-Tm-iq0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7S6-gW-6T1" secondAttribute="trailing" id="Dtu-Tn-ULF"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="reW-3Q-hfE" secondAttribute="trailing" constant="5" id="GCq-aC-zKg"/>
-                <constraint firstItem="reW-3Q-hfE" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="5" id="Gyk-Xg-m13"/>
-                <constraint firstItem="reW-3Q-hfE" firstAttribute="leading" secondItem="ndh-zU-vaF" secondAttribute="trailing" constant="10" id="Low-LL-AlZ"/>
-                <constraint firstItem="ndh-zU-vaF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="5" id="VhI-4c-h0w"/>
-                <constraint firstItem="ndh-zU-vaF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cZo-hl-1e2"/>
-                <constraint firstItem="7S6-gW-6T1" firstAttribute="top" secondItem="ndh-zU-vaF" secondAttribute="bottom" id="f8C-3f-PxQ"/>
+                <constraint firstItem="NoR-f0-QhT" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="hLC-gM-yvH"/>
+                <constraint firstItem="7S6-gW-6T1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nCY-Eo-vrH"/>
+                <constraint firstItem="NoR-f0-QhT" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="nFS-X5-NTA"/>
                 <constraint firstItem="7S6-gW-6T1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="w7h-TK-ZZ6"/>
+                <constraint firstItem="NoR-f0-QhT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wI4-IT-3cC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7S6-gW-6T1" secondAttribute="bottom" id="xj9-AJ-4t1"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="90.401785714285708"/>

@@ -55,6 +55,10 @@ final class MyNewsViewController: BaseViewController {
         // delegate && datasource
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // navigation bar
+        let trashAllMyNewsBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteAll))
+        navigationItem.rightBarButtonItem = trashAllMyNewsBarButtonItem
     }
     
     override func setupData() {
@@ -70,10 +74,12 @@ final class MyNewsViewController: BaseViewController {
         /// Add notification cennter
 //        NotificationCenter.default.addObserver(self, selector: #selector(reloadData(_:)), name: NSNotification.Name(rawValue: MyNewsViewModel.myNewNotification), object: nil)
     }
-    
+        
     // MARK: - Fetch Realm
     private func fetchAPIRealm() {
+        hud.show()
         viewModel.fetchData(completion: { [weak self] (done) in
+            hud.dismiss()
             guard let this = self else { return }
             if done {
                 this.tableView.reloadData()
@@ -84,6 +90,27 @@ final class MyNewsViewController: BaseViewController {
     }
 
     // MARK: - Objc
+    @objc private func deleteAll() {
+        // create the alert
+        let alert = UIAlertController(title: "My News Of You", message: "Are you sure you want to delete all the articles ?", preferredStyle: UIAlertController.Style.alert)
+
+        // add the actions
+        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertAction.Style.default, handler: { _ in
+            self.viewModel.deleteAll { [weak self] (done) in
+                guard let this = self else { return }
+                if done {
+                    this.fetchAPIRealm()
+                } else {
+                    print("Error Of Object From Realm")
+                }
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
+
     /// NotificationCenter
 //    @objc private func reloadData(_ notification: NSNotification) {
 //        fetchAPIRealm()

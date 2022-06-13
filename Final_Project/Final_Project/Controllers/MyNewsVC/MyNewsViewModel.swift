@@ -66,6 +66,30 @@ final class MyNewsViewModel {
         }
     }
     
+    
+    // MARK: Realm DeleteAll
+    func deleteAll(completion: (Bool) -> ()) {
+            do {
+                // realm
+                let realm = try Realm()
+                
+                // results
+                let myNewsResults = realm.objects(New.self)
+                
+                // delete all items
+                try realm.write {
+                    realm.delete(myNewsResults)
+                }
+                
+                // call back
+                completion(true)
+                
+            } catch {
+                // call back
+                completion(false)
+            }
+        }
+    
     // MARK: - Cell
     func viewModelForCell(at indexPath: IndexPath) -> MainCellViewModel {
         return MainCellViewModel(new: myNews[indexPath.row])

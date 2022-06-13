@@ -30,8 +30,14 @@ final class DetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
         guard let viewModel = viewModel else { return }
         favoriteButton.tintColor = viewModel.isAddedRealm() ? .red : .gray
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: - UI
@@ -39,7 +45,7 @@ final class DetailViewController: BaseViewController {
         guard let viewModel = viewModel else { return }
         titleDetailLabel.text = viewModel.new.title
         authorLabel.text = "By \(viewModel.new.author)"
-        contentLabel.text = viewModel.new.content
+        contentLabel.text = viewModel.new.content + DetailViewModel.Config.dummyData
         dateLabel.text = viewModel.new.publishedAt
         newsAcencyLabel.text = viewModel.new.source?.name
         descriptionLabel.text = viewModel.new.descriptions

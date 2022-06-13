@@ -1,14 +1,14 @@
 //
-//  CategoryDetailViewController.swift
+//  SearchResultViewController.swift
 //  Final_Project
 //
-//  Created by tri.nguyen on 24/05/2022.
+//  Created by tri.nguyen on 30/05/2022.
 //
 
 import UIKit
 
-final class CategoryDetailViewController: BaseViewController {
-    
+class SearchResultViewController: BaseViewController {
+
     // MARK: - Enum
     enum Identifier: String {
         case mainCell = "MainTableViewCell"
@@ -17,20 +17,25 @@ final class CategoryDetailViewController: BaseViewController {
     // MARK: - Outlet
     @IBOutlet private weak var tableView: UITableView!
     
-    var viewModel: CategoryViewModel?
+    // MARK: - Properties
+    private var viewModel = SearchResultViewModel(queryString: "")
     
-    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    // MARK: - UI
     override func setupUI() {
-        title = viewModel?.categoryType.title()
+        title = viewModel.queryString
         configTableView()
     }
+
+    func bind(viewModel: SearchResultViewModel) {
+        self.viewModel = viewModel
+    }
     
+    // MARK: - Config
     private func configTableView() {
+        // register
         let mainNib = UINib(nibName: Identifier.mainCell.rawValue, bundle: nil)
         tableView.register(mainNib, forCellReuseIdentifier: Identifier.mainCell.rawValue)
         
@@ -39,21 +44,18 @@ final class CategoryDetailViewController: BaseViewController {
         tableView.dataSource = self
     }
     
-    // MARK: - Data
     override func setupData() {
-        fetchAPI()
+        loadResultSearchAPI()
     }
     
-    // MARK: - Fetch API
-    private func fetchAPI() {
-        guard let viewModel = viewModel else { return }
+    // MARK: - Load API
+    private func loadResultSearchAPI() {
         hud.show()
         viewModel.loadAPI { [weak self] result in
             hud.dismiss()
             guard let this = self else { return }
             switch result {
-            case .success:
-                this.tableView.reloadData()
+            case .success: this.tableView.reloadData()
             case .failure(let error):
                 this.alert(title: "Error", msg: error.localizedDescription, handler: nil)
             }
@@ -62,11 +64,11 @@ final class CategoryDetailViewController: BaseViewController {
 }
 
 // MARK: - Extention UITableViewDelegate
-extension CategoryDetailViewController: UITableViewDelegate {
+extension SearchResultViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.mainCell.rawValue, for: indexPath) as? MainTableViewCell, let viewModel = viewModel else { return UITableViewCell() }
-        cell.viewModel = viewModel.viewModelForCell(at: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.mainCell.rawValue, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
+        cell.viewModel = viewModel.viewModelSearchForCell(at: indexPath)
         return cell
     }
     
@@ -76,23 +78,25 @@ extension CategoryDetailViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let viewModel = viewModel else { return }
         let vc = DetailViewController()
         vc.viewModel = viewModel.viewModelForDetail(at: indexPath)
         navigationController?.pushViewController(vc, animated: true)
     }
-        
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let viewModel = viewModel else { return }
-        let isLoadMore = viewModel.checkLoadMore(at: indexPath)
-        if isLoadMore { fetchAPI() }
+        let isLoadMore = viewModel.checkLoadMoreSearch(at: indexPath)
+        if isLoadMore { loadResultSearchAPI() }
     }
 }
 
 // MARK: - Extention UITableViewDataSource
-extension CategoryDetailViewController: UITableViewDataSource {
+extension SearchResultViewController: UITableViewDataSource {
         
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.news.count ?? 0
+        return viewModel.resultNews.count
     }
 }

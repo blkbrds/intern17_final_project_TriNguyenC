@@ -56,10 +56,11 @@ final class NewsViewController: BaseViewController {
         fetchAPI()
     }
     
-    
     // MARK: - Fetch TopHeadlines
     private func fetchAPITopHeadlines() {
+        hud.show()
         viewModel.loadAPIHeadlines { [weak self] result in
+            hud.dismiss()
             guard let this = self else { return }
             switch result {
             case .success:
@@ -77,7 +78,9 @@ final class NewsViewController: BaseViewController {
         for i in 0..<NewsViewModel.SectionType.allCases.count - 3 {
             guard let type = NewsViewModel.SectionType(rawValue: i) else { return }
             distchPathGroup.enter()
+            hud.show()
             viewModel.loadAPI(type: type) { [weak self] result in
+                hud.dismiss()
                 guard let this = self else { return }
                 switch result {
                 case .success: break
